@@ -1,0 +1,49 @@
+El proyecto 3 consiste en la elaboración de un juego para Web, Android e iOS.
+
+Se realizará un trabajo grupal donde se debe crear un videojuego del memorice con fines educativos.
+
+Se utilizará el engine gratuito de videojuegos TIC 80 https://tic80.com/
+
+El cual permite crear el código en distintos lenguajes de programación, crear la música y los gráficos con entornos 2d similares a un Super Nintendo.
+
+El videojuego consistirá en el memorice de palabras para aprender idioma.
+
+Números (1 al 100)
+Meses del Año
+Días de la Semana
+Colores
+Partes del cuerpo
+Verbos más comunes
+
+# Grupo 1: Diana y Sergio: Memorice para aprender idioma Nahuatl (http://sic.gob.mx/ficha.php?table=inali_li&table_id=5)
+
+# Grupo 2: Diego y Boris: Memorice para aprender idioma Mapuzungun (https://www.pueblosoriginarios.gob.cl/lenguas-indigenas-en-chile/lengua-mapuche)
+
+Este videojuego debe ser ejecutado en 3 plataformas: Web, Android e iOS. Deben hacerlo lo más bonito, profesional y videojueguil posible. Tienen libertad de elegir cualquier lenguaje de programación disponible en Tic80 (.lua .rb .js .moon .fnl .scm .nut .wren .wasmp .janet .py) mi recomendación sería Wren, pero es una opción pesonal.
+
+Para tener una referencia del juego acá una versión de Los picapiedras.
+
+https://www.youtube.com/watch?v=yLBSusj_iO4
+
+# Motivación
+
+Ustedes son dos empresas que deben presentar un prototipo funcional de juego para inversionistas con el fin de obtener financiamiento para proyectos más ambiciosos. Para esto los inversionistas le han solicitado desarrollar un videojuego del memorice con la tecnología de Tic80 que les permitirá evaluar tanto su calidad artística como sus capacidades de gestión de proyectos en el desarrollo de videojuegos para Web, Android e iOS.
+El videojuego del memorice consiste en presentar una palabra en español o inglés y se debe encontrar su sinónimo en el idioma seleccionado a memorizar ( un idioma nativo americano).
+
+# Entregables y Expectativas
+
+Repositorio público del juego. Con licencia AGPLv3
+Definir el nombre de su empresa y logotipo
+Github pages donde se pueda jugar el juego en su versión web.
+Por cada commit en el repositorio el juego debe ser compilado y desplegado a github pages. (Usar Github Actions https://github.com/features/actions)
+Seguir la metodología Trunk Based Development.
+Documentación con Asciidoc del proyecto siguiendo el PRD (Product Requirement Document) y plan de pruebas con UAT (User Acceptance Test). (dentro del directorio docs del repositorio) - (Esto incluye personas, casos de uso con storyboards y ADR). Entregar HTML.
+Manual del jugador. Entregar HTML (página web personalizada).
+Código bien hecho y correctamente documentado.
+
+# Presentación
+
+La presentación consiste en seguir el plan de pruebas y ejecutarlo en los ambientes Web, Android e iOS. Además de responder las preguntas del profesor y compañeros.
+Se debe tener tenida formal, se considerará como una presentación a stakeholders.
+Los compañeros actuarán como stakeholders.
+Saludos
