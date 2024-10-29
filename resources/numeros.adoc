@@ -1,0 +1,110 @@
+= Números - Numbers - Rakin
+
+[cols="1,1,1,1",options="header"]
+|===
+| No. | Español | English | Mapuzungun
+| 1 | uno | one | kiñe
+| 2 | dos | two | epu
+| 3 | tres | three | küla
+| 4 | cuatro | four | meli
+| 5 | cinco | five | kechu
+| 6 | seis | six | kayu
+| 7 | siete | seven | regle
+| 8 | ocho | eight | pura
+| 9 | nueve | nine | aylla
+| 10 | diez | ten | mari
+| 11 | once | eleven | mari kiñe
+| 12 | doce | twelve | mari epu
+| 13 | trece | thirteen | mari küla
+| 14 | catorce | fourteen | mari meli
+| 15 | quince | fifteen | mari kechu
+| 16 | dieciséis | sixteen | mari kayu
+| 17 | diecisiete | seventeen | mari regle
+| 18 | dieciocho | eighteen | mari pura
+| 19 | diecinueve | nineteen | mari aylla
+| 20 | veinte | twenty | epu mari 
+| 21 | veintiuno | twenty-one | epu mari kiñe
+| 22 | veintidós | twenty-two | epu mari epu
+| 23 | veintitrés | twenty-three | epu mari küla
+| 24 | veinticuatro | twenty-four | epu mari meli
+| 25 | veinticinco | twenty-five | epu mari kechu
+| 26 | veintiséis | twenty-six | epu mari kayu
+| 27 | veintisiete | twenty-seven | epu mari regle
+| 28 | veintiocho | twenty-eight | epu mari pura
+| 29 | veintinueve | twenty-nine | epu mari aylla
+| 30 | treinta | thirty | küla mari
+| 31 | treinta y uno | thirty-one | küla mari kiñe
+| 32 | treinta y dos | thirty-two | küla mari epu
+| 33 | treinta y tres | thirty-three | küla mari küla
+| 34 | treinta y cuatro | thirty-four | küla mari meli
+| 35 | treinta y cinco | thirty-five | küla mari kechu
+| 36 | treinta y seis | thirty-six | küla mari kayu
+| 37 | treinta y siete | thirty-seven | küla mari regle
+| 38 | treinta y ocho | thirty-eight | küla mari pura
+| 39 | treinta y nueve | thirty-nine | küla mari aylla
+| 40 | cuarenta | forty | meli mari
+| 41 | cuarenta y uno | forty-one | meli mari kiñe
+| 42 | cuarenta y dos | forty-two | meli mari epu
+| 43 | cuarenta y tres | forty-three | meli mari küla
+| 44 | cuarenta y cuatro | forty-four | meli mari meli
+| 45 | cuarenta y cinco | forty-five | meli mari kechu
+| 46 | cuarenta y seis | forty-six | meli mari kayu
+| 47 | cuarenta y siete | forty-seven | meli mari regle
+| 48 | cuarenta y ocho | forty-eight | meli mari pura
+| 49 | cuarenta y nueve | forty-nine | meli mari aylla
+| 50 | cincuenta | fifty | kechu mari
+| 51 | cincuenta y uno | fifty-one | kechu mari kiñe
+| 52 | cincuenta y dos | fifty-two | kechu mari epu
+| 53 | cincuenta y tres | fifty-three | kechu mari küla
+| 54 | cincuenta y cuatro | fifty-four | kechu mari meli
+| 55 | cincuenta y cinco | fifty-five | kechu mari kechu
+| 56 | cincuenta y seis | fifty-six | kechu mari kayu
+| 57 | cincuenta y siete | fifty-seven | kechu mari regle
+| 58 | cincuenta y ocho | fifty-eight | kechu mari pura
+| 59 | cincuenta y nueve | fifty-nine | kechu mari aylla
+| 60 | sesenta | sixty | kayu mari
+| 61 | sesenta y uno | sixty-one | kayu mari kiñe
+| 62 | sesenta y dos | sixty-two | kayu mari epu
+| 63 | sesenta y tres | sixty-three | kayu mari küla
+| 64 | sesenta y cuatro | sixty-four | kayu mari meli
+| 65 | sesenta y cinco | sixty-five | kayu mari kechu
+| 66 | sesenta y seis | sixty-six | kayu mari kayu
+| 67 | sesenta y siete | sixty-seven | kayu mari regle
+| 68 | sesenta y ocho | sixty-eight | kayu mari pura
+| 69 | sesenta y nueve | sixty-nine | kayu mari aylla
+| 70 | setenta | seventy | regle mari
+| 71 | setenta y uno | seventy-one | regle mari kiñe
+| 72 | setenta y dos | seventy-two | regle mari epu
+| 73 | setenta y tres | seventy-three | regle mari küla
+| 74 | setenta y cuatro | seventy-four | regle mari meli
+| 75 | setenta y cinco | seventy-five | regle mari kechu
+| 76 | setenta y seis | seventy-six | regle mari kayu
+| 77 | setenta y siete | seventy-seven | regle mari regle
+| 78 | setenta y ocho | seventy-eight | regle mari pura
+| 79 | setenta y nueve | seventy-nine | regle mari aylla
+| 80 | ochenta | eighty | pura mari
+| 81 | ochenta y uno | eighty-one | pura mari kiñe
+| 82 | ochenta y dos | eighty-two | pura mari epu
+| 83 | ochenta y tres | eighty-three | pura mari küla
+| 84 | ochenta y cuatro | eighty-four | pura mari meli
+| 85 | ochenta y cinco | eighty-five | pura mari kechu
+| 86 | ochenta y seis | eighty-six | pura mari kayu
+| 87 | ochenta y siete | eighty-seven | pura mari regle
+| 88 | ochenta y ocho | eighty-eight | pura mari pura
+| 89 | ochenta y nueve | eighty-nine | pura mari aylla
+| 90 | noventa | ninety | aylla mari
+| 91 | noventa y uno | ninety-one | aylla mari kiñe
+| 92 | noventa y dos | ninety-two | aylla mari epu
+| 93 | noventa y tres | ninety-three | aylla mari küla
+| 94 | noventa y cuatro | ninety-four | aylla mari meli
+| 95 | noventa y cinco | ninety-five | aylla mari kechu
+| 96 | noventa y seis | ninety-six | aylla mari kayu
+| 97 | noventa y siete | ninety-seven | aylla mari regle
+| 98 | noventa y ocho | ninety-eight | aylla mari pura
+| 99 | noventa y nueve | ninety-nine | aylla mari aylla
+| 100 | cien | one hundred | pataka ~ kiñe pataka
+
+|===
+
+=== _Referencias:_
+- UCT Diccionario abreviado Mapudungun - español - inglés. (s. f.). https://3w.uct.cl/diccionario/numeral.php
