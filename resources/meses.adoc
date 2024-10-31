@@ -5,18 +5,18 @@ Con frecuencia los mapuches nombraban los meses dependiendo el suceso de dicho m
 [cols="1,1,1",options="header"]
 |===
 | Español | English | Mapuzungun
-| Enero | January | Eneru
-| Febrero | February | Few­r­eru
-| Marzo | March | Marsu
-| Abril | April | Afril
-| Mayo | May | Mayu
-| Junio | June | Kuniu
-| Julio | July | kuliu
-| Agosto | August | Akostu
-| Septiembre | September | Setiempüre
-| Octubre | October | oktufüre
-| Noviembre | November | Nofiempüre
-| Diciembre | December | Disiemp­ü­re
+| enero | january | eneru
+| febrero | february | few­r­eru
+| marzo | march | marsu
+| abril | april | afril
+| mayo | may | mayu
+| junio | june | kuniu
+| julio | july | kuliu
+| agosto | august | akostu
+| septiembre | september | setiempüre
+| octubre | october | oktufüre
+| noviembre | november | nofiempüre
+| diciembre | december | disiemp­ü­re
 |===
 
 === _Referencias:_
