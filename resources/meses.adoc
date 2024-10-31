@@ -1,0 +1,23 @@
+= Meses - Months - Küyen
+
+Con frecuencia los mapuches nombraban los meses dependiendo el suceso de dicho mes, sin embargo también tiene nombres que se asemejan a los meses del calendario gregoriano. A continuación se presenta una tabla con los nombres de los meses en español, inglés y mapuzungun.
+
+[cols="1,1,1",options="header"]
+|===
+| Español | English | Mapuzungun
+| Enero | January | Eneru
+| Febrero | February | Few­r­eru
+| Marzo | March | Marsu
+| Abril | April | Afril
+| Mayo | May | Mayu
+| Junio | June | Kuniu
+| Julio | July | kuliu
+| Agosto | August | Akostu
+| Septiembre | September | Setiempüre
+| Octubre | October | oktufüre
+| Noviembre | November | Nofiempüre
+| Diciembre | December | Disiemp­ü­re
+|===
+
+=== _Referencias:_
+- mapuche küyen’ | chandia.net. (s. f.). https://www.chandia.net/mapuche-kuyen#:~:text=Los%20mapuche%20han%20adoptado%20la,%2C%20nofiemp%C3%BCre%2C%20disiemp%C3%BCre%2C%20respectivamente.
