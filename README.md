@@ -92,7 +92,8 @@ A continación se muestran las palabras que forman parte del videojuego:
 | Llegar       | To arrive     | Puñeñ      |
 | Comer        | To eat        | Ütu        |
 | Beber        | To drink      | Ñamku      |
-| Hablar       | To
+| Hablar       | To speak      | Dungu      |
+| Vivir        | To live       | Mongen      |
 
 
 
