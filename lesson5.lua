@@ -1,5 +1,5 @@
--- title:   lesson5
--- author:  Omega
+-- title:   Proyecto
+-- author:  Omega & Diego
 -- desc:    shoot_projectile
 -- site:    website link
 -- license: MIT License (change this to your license of choice)
@@ -25,6 +25,47 @@ slime = {
 	costume = 320
 }
 
+--Valores letras
+local letterValues = {
+    a = 336, b = 337, c = 338, d = 339, e = 340, f = 341,
+    g = 342, h = 343, i = 344, j = 345, k = 346, l = 347,
+    m = 348, n = 349, o = 350, p = 351, q = 352, r = 353,
+    s = 354, t = 355, u = 356, v = 357, w = 358, x = 359,
+    y = 360, z = 361, N = 362, U = 363
+}--VALORES LETRAS
+
+--posiciones iniciales de las 10 palabras
+local positions = {
+			p1 = {x = 72,y = 16}, 	p2  = {x = 161,y = 16},	
+			p3 = {x = 72,y = 40}, 	p4  = {x = 161,y = 40},
+			p5 = {x = 72,y = 64}, 	p6  = {x = 161,y = 64},
+			p7 = {x = 72,y = 88}, 	p8  = {x = 161,y = 88},
+			p9 = {x = 72,y = 112},	p10 = {x = 161,y = 112},
+}--POSICIONES EN EL NIVEL
+
+--FALTA IMPLEMENTAR EL DICCIONARIO DE PALABRAS
+local languaje =
+{
+w1  = {spanish = "waos", english="weos", mapudungun = "uga buga"},
+w2  = {spanish = "eo", english="io", mapudungun = "eso tilin"},
+}--DICCIONARIO DE PALABRAS
+
+local months = 
+{
+    w1  = {spanish = "enero", english = "january", mapudungun = "txipantu"},
+    w2  = {spanish = "febrero", english = "february", mapudungun = "camtxipantu"},
+    w3  = {spanish = "marzo", english = "march", mapudungun = "llipen"},
+    w4  = {spanish = "abril", english = "april", mapudungun = "llui"},
+    w5  = {spanish = "mayo", english = "may", mapudungun = "inal llui"},
+    w6  = {spanish = "junio", english = "june", mapudungun = "xafkintun"},
+    w7  = {spanish = "julio", english = "july", mapudungun = "inan"},
+    w8  = {spanish = "agosto", english = "august", mapudungun = "pukem"},
+    w9  = {spanish = "septiembre", english = "september", mapudungun = "ayUwe"},
+    w10 = {spanish = "octubre", english = "october", mapudungun = "pUNen"},
+    w11 = {spanish = "noviembre", english = "november", mapudungun = "ngUrrU"},
+    w12 = {spanish = "diciembre", english = "december", mapudungun = "txotxoykUn"}
+}
+
 gravity = 0.2
 
 function TIC()
@@ -32,13 +73,29 @@ function TIC()
 	cls()
 	t = time()//10
 	
+	map(0,0,30,17)
+	
 	moveBlobby()
 	checkLimits()
 	
 	throwSlime()
 	
-	spr(blobby.costume + t%60//30 , blobby.x, blobby.y)
-	
+	spr(blobby.costume + t%60//30 , blobby.x, blobby.y,0)
+	--EJEMPLO DE COMO IMPLEMENTAR LAS FUNCIONES CON POSICIONES
+	--FALTA HACER UNA FUNCION QUE TOME AL AZAR 5 palabras y 
+	--las cruce en sus versiones spanish-mapu o english-mapu
+	drawWord(months.w1.spanish,    positions.p1.x,  positions.p1.y)
+	drawWord(months.w2.mapudungun,    positions.p2.x,  positions.p2.y)
+	drawWord("tres",   positions.p3.x,  positions.p3.y)
+	drawWord("cuatro", positions.p4.x,  positions.p4.y)
+	drawWord("cinco",  positions.p5.x,  positions.p5.y)
+	drawWord("seis",   positions.p6.x,  positions.p6.y)
+	drawWord("siete",  positions.p7.x,  positions.p7.y)
+	drawWord("ocho",   positions.p8.x,  positions.p8.y)
+	drawWord("nueve",  positions.p9.x,  positions.p9.y)
+	drawWord("diez",   positions.p10.x, positions.p10.y)
+		
+
 end
 
 function moveBlobby()
@@ -123,5 +180,21 @@ function throwSlime()
 			
 			
 	end
-	print(slime.x)
 end--throwSlime
+
+function drawLetter(letter, x, y)
+    letter = string.lower(letter)
+    local spriteIndex = letterValues[letter]
+    if spriteIndex then
+        spr(spriteIndex, x, y,0)
+    end
+end--drawLetter
+
+function drawWord(word, startX, startY)
+    local letterSpacing = 7--es mejor 7 que 8 porque si
+    for i = 1, #word do
+        local letter = word:sub(i, i)  -- Extrae la letra en la posición i
+        drawLetter(letter, startX + (i - 1) * letterSpacing, startY)  -- Dibuja cada letra con un desplazamiento en X
+    end
+end--drawWord
+
