@@ -1,7 +1,7 @@
 -- title:   lesson5
 -- author:  Omega
 -- desc:    shoot_projectile
--- site:    lero lero no tengo xd
+-- site:    website link
 -- license: MIT License (change this to your license of choice)
 -- version: 0.1
 -- script:  lua
@@ -11,14 +11,18 @@ blobby = {
 	y = 0,
 	speed = .5,
 	vx = 0,
-	vy = 0
+	vy = 0,
+	costume = 272,
+	direction = "right"
 }
 
 slime = {
 	x = 0,
 	y = 0,
 	active = false,
-	vx = 0
+	vx = 0,
+	speed = 4,
+	costume = 320
 }
 
 gravity = 0.2
@@ -26,13 +30,14 @@ gravity = 0.2
 function TIC()
 
 	cls()
+	t = time()//10
 	
 	moveBlobby()
 	checkLimits()
 	
 	throwSlime()
 	
-	spr(256, blobby.x, blobby.y)
+	spr(blobby.costume + t%60//30 , blobby.x, blobby.y)
 	
 end
 
@@ -42,10 +47,19 @@ function moveBlobby()
 	--MOVE
 	if btn(2) then --left
 		blobby.vx = -1 * blobby.speed
+		blobby.costume = 278
+		blobby.direction = "left" 
 	elseif btn(3) then --right
 		blobby.vx = blobby.speed
+		blobby.costume = 280
+		blobby.direction = "right" 
 	else --stop
 		blobby.vx = 0
+		if blobby.direction == "left" then
+			blobby.costume = 272
+		else
+			blobby.costume = 282
+		end
 	end
 	
 	--JUMP if grpund and arrow pressed
@@ -88,28 +102,26 @@ function throwSlime()
 		if slime.x < 0 or slime.x > 232 then
 			slime.active = false
 		else
-			spr(320, slime.x, slime.y)
+			spr(slime.costume + t%60//20, slime.x, slime.y)
 		end
 		
 	--otherwise slime doesn't exist, create slime if 2 pressed
 	elseif	btnp(4) then
 			--mark slime as active
 			slime.active = true
-			if blobby.vx == 0 then
-				slime.vx = 2
-			else
-				slime.vx = blobby.vx * 1.5
-			end 	
-					
-			--set starting position of slime
-			if blobby.vx > 0 then
+			if blobby.direction == "right" then
+				slime.vx = slime.speed
 				slime.x = blobby.x + 9
 			else
+				slime.vx = slime.speed * -1
 				slime.x = blobby.x -9
+					
+
 			end
 			
 		 slime.y = blobby.y
 			
+			
 	end
-	
+	print(slime.x)
 end--throwSlime
