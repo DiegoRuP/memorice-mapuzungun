@@ -1,6 +1,6 @@
 # Memorice-Mapudungun
 
-El presente proyecto consta de un juego desarrollad en el engine de videojuegos TIC 80 (posteriormente porteado a Web, Andrpoid e iOS).
+El presente proyecto consta de un juego desarrollado en el engine de videojuegos TIC 80 (posteriormente porteado a Web, Andrpoid e iOS).
 La temática del jeugo es un videojuego del memorice con fines educativos.
 A continación se muestran las palabras que forman parte del videojuego:
 
