@@ -1,0 +1,23 @@
+= Colores - Colors - Perkiñ
+
+Estos son algunos de los colores en mapuzungun:
+
+[cols="1,1,1",options="header"]
+|===
+| Español | English | Mapuzungun
+| amarillo | yellow | chod
+| azul | blue | kalfü
+| blanco | white | lig, lüg
+| café | brown | kolü
+| celeste | light blue | kalfü ligw
+| gris | gray | kadü
+| morado | purple | kuñoll
+| naranja | orange | kelüchod
+| negro | black | kuru
+| rojo | red | kelu
+| verde | green | karü
+| violeta | violet | awawe
+|===
+
+=== _Referencias:_
+- Ministerio de Desarrollo Social y Familia [Gobierno de Chile]. (s. f.). Diccionario de la Lengua Mapuche. https://www.conadi.gob.cl/storage/docs/Diccionario_mapudungun.pdf

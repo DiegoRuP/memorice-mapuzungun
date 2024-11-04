@@ -1,0 +1,18 @@
+= Dias - Days - Antü
+
+Los nombres de los dias de la semana en mapuzungun son:
+
+[cols="1,1,1",options="header"]
+|===
+| Español | English | Mapuzungun
+| lunes | january |  lüne antü
+| martes | tuesday |  marte antü
+| miércoles | wednesday |  miercoles antü
+| jueves | thursday |  kueve antü
+| viernes | friday |  fiernes antü
+| sábado | saturday |  safadu antü
+| domingo | sunday |  domingu antü
+|===
+
+=== _Referencias:_
+- mapuche küyen’ | chandia.net. (s. f.). https://www.chandia.net/mapuche-kuyen#:~:text=Los%20mapuche%20han%20adoptado%20la,%2C%20nofiemp%C3%BCre%2C%20disiemp%C3%BCre%2C%20respectivamente.

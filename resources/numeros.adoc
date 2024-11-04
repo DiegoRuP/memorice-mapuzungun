@@ -1,5 +1,7 @@
 = Números - Numbers - Rakin
 
+Los numeros en mapuzungun son muy importantes para la cultura mapuche, a continuación se presenta una tabla con los números en español, inglés y mapuzungun.
+
 [cols="1,1,1,1",options="header"]
 |===
 | No. | Español | English | Mapuzungun
