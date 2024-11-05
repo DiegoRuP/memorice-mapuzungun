@@ -35,12 +35,12 @@ local letterValues = {
 }--VALORES LETRAS
 
 --posiciones iniciales de las 10 palabras
-local positions = {
-			p1 = {x = 72,y = 16}, 	p2  = {x = 161,y = 16},	
-			p3 = {x = 72,y = 40}, 	p4  = {x = 161,y = 40},
-			p5 = {x = 72,y = 64}, 	p6  = {x = 161,y = 64},
-			p7 = {x = 72,y = 88}, 	p8  = {x = 161,y = 88},
-			p9 = {x = 72,y = 112},	p10 = {x = 161,y = 112},
+local loc = {
+			p1 = {x = 72,y = 16, bx = 64, by = 8,  w=87, h=23}, 	p2  = {x = 161,y = 16 , w=87, h=23},	
+			p3 = {x = 72,y = 40,  w=87, h=23}, 	p4  = {x = 161,y = 40 , w=87, h=23},
+			p5 = {x = 72,y = 64,  w=87, h=23}, 	p6  = {x = 161,y = 64 , w=87, h=23},
+			p7 = {x = 72,y = 88,  w=87, h=23}, 	p8  = {x = 161,y = 88 , w=87, h=23},
+			p9 = {x = 72,y = 112, w=87, h=23},	 p10 = {x = 161,y = 112, w=87, h=23},
 }--POSICIONES EN EL NIVEL
 
 --FALTA IMPLEMENTAR EL DICCIONARIO DE PALABRAS
@@ -72,7 +72,7 @@ function TIC()
 
 	cls()
 	t = time()//10
-	
+
 	map(0,0,30,17)
 	
 	moveBlobby()
@@ -84,19 +84,29 @@ function TIC()
 	--EJEMPLO DE COMO IMPLEMENTAR LAS FUNCIONES CON POSICIONES
 	--FALTA HACER UNA FUNCION QUE TOME AL AZAR 5 palabras y 
 	--las cruce en sus versiones spanish-mapu o english-mapu
-	drawWord(months.w1.spanish,    positions.p1.x,  positions.p1.y)
-	drawWord(months.w2.mapudungun,    positions.p2.x,  positions.p2.y)
-	drawWord("tres",   positions.p3.x,  positions.p3.y)
-	drawWord("cuatro", positions.p4.x,  positions.p4.y)
-	drawWord("cinco",  positions.p5.x,  positions.p5.y)
-	drawWord("seis",   positions.p6.x,  positions.p6.y)
-	drawWord("siete",  positions.p7.x,  positions.p7.y)
-	drawWord("ocho",   positions.p8.x,  positions.p8.y)
-	drawWord("nueve",  positions.p9.x,  positions.p9.y)
-	drawWord("diez",   positions.p10.x, positions.p10.y)
-		
+	drawWord(months.w1.spanish,    loc.p1.x,  loc.p1.y)
+	drawWord(months.w2.mapudungun,    loc.p2.x,  loc.p2.y)
+	drawWord("tres",   loc.p3.x,  loc.p3.y)
+	drawWord("cuatro", loc.p4.x,  loc.p4.y)
+	drawWord("cinco",  loc.p5.x,  loc.p5.y)
+	drawWord("seis",   loc.p6.x,  loc.p6.y)
+	drawWord("siete",  loc.p7.x,  loc.p7.y)
+	drawWord("ocho",   loc.p8.x,  loc.p8.y)
+	drawWord("nueve",  loc.p9.x,  loc.p9.y)
+	drawWord("diez",   loc.p10.x, loc.p10.y)
+	moveSelection()
+end
+
+function moveSelection()
+		x, y, left, middle, right, scrollX, scrollY = mouse()
+  -- Mostrar posición del cursor
+  print("Posicion del mouse: ("..x..", "..y..")", 10, 10, 12+t%60//20)
+  if (x > loc.p1.bx and x< loc.p1.bx + 87) and (y>loc.p1.by and y<loc.p1.by+23) then
+			rectb(loc.p1.bx,loc.p1.by,loc.p1.w,loc.p1.h,12+t%60//20) 	
+  end
 
 end
+
 
 function moveBlobby()
 	-- up=0, down=1, left=2, right=2
@@ -197,4 +207,3 @@ function drawWord(word, startX, startY)
         drawLetter(letter, startX + (i - 1) * letterSpacing, startY)  -- Dibuja cada letra con un desplazamiento en X
     end
 end--drawWord
-
