@@ -1,5 +1,5 @@
--- title:   Proyecto
--- author:  Omega & Diego
+-- title:   lesson5
+-- author:  Omega
 -- desc:    shoot_projectile
 -- site:    website link
 -- license: MIT License (change this to your license of choice)
@@ -25,7 +25,7 @@ slime = {
 	costume = 320
 }
 
---Valores letras
+--VALORES LETRAS
 local letterValues = {
     a = 336, b = 337, c = 338, d = 339, e = 340, f = 341,
     g = 342, h = 343, i = 344, j = 345, k = 346, l = 347,
@@ -52,18 +52,18 @@ w2  = {spanish = "eo", english="io", mapudungun = "eso tilin"},
 
 local months = 
 {
-    w1  = {spanish = "enero", english = "january", mapudungun = "txipantu"},
-    w2  = {spanish = "febrero", english = "february", mapudungun = "camtxipantu"},
-    w3  = {spanish = "marzo", english = "march", mapudungun = "llipen"},
-    w4  = {spanish = "abril", english = "april", mapudungun = "llui"},
-    w5  = {spanish = "mayo", english = "may", mapudungun = "inal llui"},
-    w6  = {spanish = "junio", english = "june", mapudungun = "xafkintun"},
-    w7  = {spanish = "julio", english = "july", mapudungun = "inan"},
-    w8  = {spanish = "agosto", english = "august", mapudungun = "pukem"},
-    w9  = {spanish = "septiembre", english = "september", mapudungun = "ayUwe"},
-    w10 = {spanish = "octubre", english = "october", mapudungun = "pUNen"},
-    w11 = {spanish = "noviembre", english = "november", mapudungun = "ngUrrU"},
-    w12 = {spanish = "diciembre", english = "december", mapudungun = "txotxoykUn"}
+    w1  = {spanish = "enero", english = "january", mapudungun = "eneru"},
+    w2  = {spanish = "febrero", english = "february", mapudungun = "fewreru"},
+    w3  = {spanish = "marzo", english = "march", mapudungun = "marsu"},
+    w4  = {spanish = "abril", english = "april", mapudungun = "afril"},
+    w5  = {spanish = "mayo", english = "may", mapudungun = "mayu"},
+    w6  = {spanish = "junio", english = "june", mapudungun = "kuniu"},
+    w7  = {spanish = "julio", english = "july", mapudungun = "kuliu"},
+    w8  = {spanish = "agosto", english = "august", mapudungun = "akostu"},
+    w9  = {spanish = "septiembre", english = "september", mapudungun = "setiempUre"},
+    w10 = {spanish = "octubre", english = "october", mapudungun = "oktufUre"},
+    w11 = {spanish = "noviembre", english = "november", mapudungun = "nofiempUre"},
+    w12 = {spanish = "diciembre", english = "december", mapudungun = "disempUre"}
 }
 
 gravity = 0.2
