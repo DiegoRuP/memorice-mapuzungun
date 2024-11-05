@@ -48,18 +48,19 @@ Nuestro compromiso es desarrollar un prototipo de videojuego tipo memorice que r
 ### 3.3 Meses del año
 | Español    | Inglés    | Mapudungun  |
 | ---------- | --------- | ----------- |
-| Enero      | January   | Txipantu    |
-| Febrero    | February  | Ñamtxipantu |
-| Marzo      | March     | Llipen      |
-| Abril      | April     | Llui        |
-| Mayo       | May       | Inal Llui   |
-| Junio      | June      | Xafkintun   |
-| Julio      | July      | Inan        |
-| Agosto     | August    | Pukem       |
-| Septiembre | September | Ayüwe       |
-| Octubre    | October   | Püñen       |
-| Noviembre  | November  | Ngürrü      |
-| Diciembre  | December  | Txotxoykün  |
+| Enero      | January   | eneru       |
+| Febrero    | February  | few­r­eru     |
+| Marzo      | March     | marsu       |
+| Abril      | April     | afril       |
+| Mayo       | May       | mayu        |
+| Junio      | June      | kuniu       |
+| Julio      | July      | kuliu       |
+| Agosto     | August    | akostu      |
+| Septiembre | September | setiempüre  |
+| Octubre    | October   | oktufüre    |
+| Noviembre  | November  | nofiempüre  |
+| Diciembre  | December  | disiemp     |
+
 
 
 ### 3.4 Días de la Semana
