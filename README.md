@@ -76,18 +76,20 @@ Nuestro compromiso es desarrollar un prototipo de videojuego tipo memorice que r
 
 
 ### 3.5 Colores
-| Español    | Inglés   | Mapudungun |
-| ---------- | -------- | ---------- |
-| Rojo       | Red      | Kelü       |
-| Azul       | Blue     | Kallfü     |
-| Verde      | Green    | Karü       |
-| Amarillo   | Yellow   | Chod       |
-| Negro      | Black    | Kurü       |
-| Blanco     | White    | Llofe      |
-| Marrón     | Brown    | Chilca     |
-| Gris       | Gray     | Kafri      |
-| Anaranjado | Orange   | Anchiyin   |
-| Rosa       | Pink     | Kallü      |
+| Español    | Inglés     | Mapudungun |
+| ---------- | --------   | ---------- |
+| amarillo   | yellow     | chod       |
+| azul       | blue       | kalfü      |
+| blanco     | white      | lig, lüg   |
+| café       | brown      | kolü       |
+| celeste    | light blue | kalfü ligw |
+| gris       | gray       | kadü       |
+| morado     | purple     | kuñoll     |
+| naranja    | orange     | kelüchod   |
+| negro      | black      | kuru       |
+| rojo       | red        | kelu       |
+| verde      | green      | karü       |
+| violeta    | violet     | awawe      |
 
 
 ### 3.6 Partes del Cuerpo
