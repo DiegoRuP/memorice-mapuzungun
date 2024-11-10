@@ -72,6 +72,11 @@ function TIC()
 
 	cls()
 	t = time()//10
+	
+	-- Iniciar la música del track 0 al iniciar el juego
+	if t == 0 then
+ 	music(0)
+ end
 
 	map(0,0,30,17)
 	
@@ -110,7 +115,7 @@ end
 
 function moveBlobby()
 	-- up=0, down=1, left=2, right=2
-	
+
 	--MOVE
 	if btn(2) then --left
 		blobby.vx = -1 * blobby.speed
@@ -207,3 +212,4 @@ function drawWord(word, startX, startY)
         drawLetter(letter, startX + (i - 1) * letterSpacing, startY)  -- Dibuja cada letra con un desplazamiento en X
     end
 end--drawWord
+
