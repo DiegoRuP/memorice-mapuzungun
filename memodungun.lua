@@ -1,27 +1,51 @@
 -- Variables globales para el ancho y alto de las cartas
 w = 66
-h=10
+h = 10
+-- Variables para la posición del personaje
+px, py = 22, 26  -- Posición inicial del personaje
 
--- Función TIC-80 para dibujar en pantalla y gestionar la lógica
+-- Posiciones relativas de los ojos desde la posición del personaje
+eye_offset_x_left, eye_offset_y = 4, 5  -- Posición del ojo izquierdo
+eye_offset_x_right = 14  -- Posición del ojo derecho
+eye_distance_x = 2  -- Desplazamiento máximo horizontal de la pupila
+eye_distance_y = 1  -- Desplazamiento máximo vertical de la pupila
+
+-- Función para dibujar las pupilas mirando hacia el cursor
+function dibujarOjos(px, py, angle)
+    -- Calcular el desplazamiento de las pupilas en la dirección del cursor
+    local eye_x_offset = math.cos(angle) * eye_distance_x
+    local eye_y_offset = math.sin(angle) * eye_distance_y
+
+    -- Dibujar el punto del ojo izquierdo
+    pix(px + eye_offset_x_left + eye_x_offset, py + eye_offset_y + eye_y_offset, 0)  
+    -- Dibujar el punto del ojo derecho
+    pix(px + eye_offset_x_right + eye_x_offset, py + eye_offset_y + eye_y_offset, 0)  
+end
+
 function TIC()
-    cls(0)  -- Limpia la pantalla con el color negro
-    map(0,0,30,17)
-    t = time()//10
-				-- Iniciar la música del track 0 al iniciar el juego
-				if t == 0 then
- 				music(0)
+    cls(0)  -- Limpia la pantalla
+    map(0, 0, 30, 17)  -- Dibuja el mapa
+    
+    if not musicStarted then
+        music(0) 
+        musicStarted = true
     end
-    -- Dibujar el tablero de memorama
+
+    -- Obtener la posición del mouse
+    local mx, my, left, middle, right = mouse()
+
+    -- Calcular el ángulo hacia el mouse
+    local angle = math.atan2(my - py, mx - px)
+    
+    spr(1, px, py, 0)  
+    dibujarOjos(px, py, angle)
     dibujarMemorama()
-
-    -- Detección de clic
     manejarClick()
-
-    -- Verificar si las cartas seleccionadas hacen un par
     verificarPares()
-				moveSelection()
+
     -- Mostrar mensaje si el jugador ha encontrado todos los pares
     if matchesFound == 5 then
+        cls(0)
         print("¡Ganaste! Encontraste todos los pares.", 20, 100, 12)
     end
 end
@@ -74,7 +98,7 @@ function dibujarMemorama()
         
         -- Mostrar carta si está volteada o emparejada
         if card.flipped or card.matched then
-        				drawWord(card.text, x, y)
+            drawWord(card.text, x, y)
         else
             rect(x-2, y-2, w, h, 2)  -- Dibuja el reverso de la carta con ancho w y alto h
         end
@@ -83,10 +107,8 @@ end
 
 -- Función para manejar el clic del ratón
 function manejarClick()
-	 local mx, my, left, right = mouse()
+    local mx, my, left, right = mouse()
     if left  then
-        local mx, my = mouse()
-        
         for i, card in ipairs(memorama) do
             local x = loc[i].x
             local y = loc[i].y
@@ -133,7 +155,7 @@ for _, par in ipairs(paresSeleccionados) do
 end
 shuffle(memorama)
 
--- Definición de las posiciones de las cartas (sin w y h)
+-- Definición de las posiciones de las cartas
 loc = {
     {x = 73, y = 17},
     {x = 161, y = 17},
@@ -146,62 +168,30 @@ loc = {
     {x = 73, y = 113},
     {x = 161, y = 113}
 }
---VALORES LETRAS
+
+-- Valores de letras
 local letterValues = {
     a = 336, b = 337, c = 338, d = 339, e = 340, f = 341,
     g = 342, h = 343, i = 344, j = 345, k = 346, l = 347,
     m = 348, n = 349, o = 350, p = 351, q = 352, r = 353,
     s = 354, t = 355, u = 356, v = 357, w = 358, x = 359,
     y = 360, z = 361, N = 362, U = 363
-}--VALORES LETRAS
-
-
-function moveSelection()
-    -- Obtener posición del mouse
-    x, y, left, middle, right, scrollX, scrollY = mouse()
-    
-    -- Mostrar posición del cursor
-    print("Posicion del mouse: ("..x..", "..y..")", 10, 10, 12)
-    
-    -- Comprobaciones específicas para cada ubicación en `loc` con los ajustes solicitados
-    if (x > loc[1].x - 10 and x < loc[1].x + w + 5) and (y > loc[1].y - 10 and y < loc[1].y + h + 5) then
-        rectb(loc[1].x - 10, loc[1].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[2].x - 10 and x < loc[2].x + w + 5) and (y > loc[2].y - 10 and y < loc[2].y + h + 5) then
-        rectb(loc[2].x - 10, loc[2].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[3].x - 10 and x < loc[3].x + w + 5) and (y > loc[3].y - 10 and y < loc[3].y + h + 5) then
-        rectb(loc[3].x - 10, loc[3].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[4].x - 10 and x < loc[4].x + w + 5) and (y > loc[4].y - 10 and y < loc[4].y + h + 5) then
-        rectb(loc[4].x - 10, loc[4].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[5].x - 10 and x < loc[5].x + w + 5) and (y > loc[5].y - 10 and y < loc[5].y + h + 5) then
-        rectb(loc[5].x - 10, loc[5].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[6].x - 10 and x < loc[6].x + w + 5) and (y > loc[6].y - 10 and y < loc[6].y + h + 5) then
-        rectb(loc[6].x - 10, loc[6].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[7].x - 10 and x < loc[7].x + w + 5) and (y > loc[7].y - 10 and y < loc[7].y + h + 5) then
-        rectb(loc[7].x - 10, loc[7].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[8].x - 10 and x < loc[8].x + w + 5) and (y > loc[8].y - 10 and y < loc[8].y + h + 5) then
-        rectb(loc[8].x - 10, loc[8].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[9].x - 10 and x < loc[9].x + w + 5) and (y > loc[9].y - 10 and y < loc[9].y + h + 5) then
-        rectb(loc[9].x - 10, loc[9].y - 10, w + 15, h + 15, 12)
-    elseif (x > loc[10].x - 10 and x < loc[10].x + w + 5) and (y > loc[10].y - 10 and y < loc[10].y + h + 5) then
-        rectb(loc[10].x - 10, loc[10].y - 10, w + 15, h + 15, 12)
-    end
-end
+}
 
 function drawLetter(letter, x, y)
     local spriteIndex = letterValues[letter]
     if spriteIndex then
-        spr(spriteIndex, x, y,0)
+        spr(spriteIndex, x, y, 0)
     end
-end--drawLetter
+end
 
 function drawWord(word, startX, startY)
-    local letterSpacing = 6--es mejor 7 que 8 porque si
+    local letterSpacing = 6
     for i = 1, #word do
         local letter = word:sub(i, i)  -- Extrae la letra en la posición i
         drawLetter(letter, startX + (i - 1) * letterSpacing, startY)  -- Dibuja cada letra con un desplazamiento en X
     end
-end--drawWord
-
+end
 
 -- Variables de control
 firstCard, secondCard = nil, nil
