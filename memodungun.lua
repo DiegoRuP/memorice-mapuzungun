@@ -2,7 +2,7 @@
 w = 66
 h = 10
 -- Variables para la posición del personaje
-px, py = 22, 26  -- Posición inicial del personaje
+px, py = 110, 26  -- Posición inicial del personaje
 
 -- Posiciones relativas de los ojos desde la posición del personaje
 eye_offset_x_left, eye_offset_y = 4, 5  -- Posición del ojo izquierdo
@@ -27,7 +27,7 @@ function TIC()
     map(0, 0, 30, 17)  -- Dibuja el mapa
     
     if not musicStarted then
-        music(0) 
+        music(0)  -- Reproduce la música en el track 0
         musicStarted = true
     end
 
@@ -36,9 +36,14 @@ function TIC()
 
     -- Calcular el ángulo hacia el mouse
     local angle = math.atan2(my - py, mx - px)
-    
-    spr(1, px, py, 0)  
+
+    -- Dibujar el personaje (ajusta `spr` para la posición actual)
+    spr(255, px, py, 0)  -- El sprite No. 255 es un sprite vacio
+
+    -- Llamar a la función para dibujar los ojos mirando hacia el cursor
     dibujarOjos(px, py, angle)
+
+    -- Otros elementos del juego
     dibujarMemorama()
     manejarClick()
     verificarPares()
@@ -157,15 +162,15 @@ shuffle(memorama)
 
 -- Definición de las posiciones de las cartas
 loc = {
-    {x = 73, y = 17},
+    {x = 17, y = 17},
     {x = 161, y = 17},
-    {x = 73, y = 41},
+    {x = 17, y = 41},
     {x = 161, y = 41},
-    {x = 73, y = 65},
+    {x = 17, y = 65},
     {x = 161, y = 65},
-    {x = 73, y = 89},
+    {x = 17, y = 89},
     {x = 161, y = 89},
-    {x = 73, y = 113},
+    {x = 17, y = 113},
     {x = 161, y = 113}
 }
 
