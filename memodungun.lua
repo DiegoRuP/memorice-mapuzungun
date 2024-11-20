@@ -4,6 +4,98 @@ h = 10
 -- Variables para la posición del personaje
 px, py = 110, 26  -- Posición inicial del personaje
 
+-- Variables para la música
+musicStarted = false
+mostrarHistoria = true  -- Controla si se muestra la historia
+texto_mostrado = ""  -- Texto que se muestra en pantalla
+
+-- Historia del juego
+local historia = { 
+    "En un tiempo de sombras y resistencia...", 
+    "un joven guerrero llamado Kallfü,", 
+    "se encuentra atrapado en el caos.", 
+    "",
+    "Un ataque a su aldea lo lleva a huir,", 
+    "perdiéndose en las profundidades del ",
+    "bosque...", 
+    "",
+    "Pero en la oscuridad encuentra un", 
+    "refugio. Una cueva, oculta y antigua.", 
+    "",
+    "Dentro, una anciana lo espera.", 
+    "La Machi, sanadora y protectora de", 
+    "espíritus.", 
+    "",
+    "\"El portal ha sido abierto...\", dice ella.", 
+    "\"Tu misión está escrita en las estrellas.\"", 
+    "",
+    "Kallfü recibe un amuleto: el Püllü.", 
+    "Un artefacto místico con un propósito",
+    "claro...", 
+    "",
+    "A través del portal, enfrentará pruebas.", 
+    "Pruebas que desafiarán su mente y espíritu.", 
+    "",
+    "Los pilares de su cultura deben renacer.", 
+    "Números, colores, ciclos del tiempo...", 
+    "",
+    "Y cuando todo parezca perdido...", 
+    "\"Recordarás quién eres y de dónde vienes.\""
+}
+
+local linea_actual = 1
+local char_index = 0
+local tiempo = 0
+local velocidad = 5  -- Velocidad de la escritura
+
+local texto_mostrado_lines = {}  -- Almacena las líneas de texto mostradas
+local scroll_speed = 1  -- Velocidad del scroll (aumenta para mover más rápido)
+local max_lines = 7  -- Número máximo de líneas visibles
+
+-- Función para dibujar la historia del juego con escritura letra por letra
+function dibujarHistoria()
+    -- Incrementa el contador de tiempo
+    tiempo = tiempo + 1
+
+    -- Controla la velocidad de escritura
+    if tiempo % velocidad == 0 then
+        if linea_actual <= #historia then
+            local linea = historia[linea_actual]
+            if char_index < #linea then
+                -- Agrega el siguiente carácter al texto mostrado
+                char_index = char_index + 1
+                texto_mostrado = linea:sub(1, char_index)
+                sfx(63, "D-3", 10, 0, 5)  -- Efecto de sonido por cada letra
+            else
+                -- Cuando se termine una línea, la agregamos al array de líneas mostradas
+                table.insert(texto_mostrado_lines, texto_mostrado)
+                -- Limitar el número de líneas visibles en pantalla
+                if #texto_mostrado_lines > max_lines then
+                    table.remove(texto_mostrado_lines, 1)  -- Elimina la primera línea (scroll)
+                end
+                -- Pasa a la siguiente línea
+                linea_actual = linea_actual + 1
+                char_index = 0
+                texto_mostrado = ""  -- Resetea el texto temporal
+            end
+        else
+            mostrarHistoria = false  -- Historia finalizada
+        end
+    end
+
+    -- Dibujar las líneas de texto ya mostradas (scroll)
+    local y_offset = 70  -- Desplazamiento vertical inicial
+    for i = 1, #texto_mostrado_lines do
+        print(texto_mostrado_lines[i], 15, y_offset, 12)
+        y_offset = y_offset + 8  -- Aumenta el desplazamiento vertical para la siguiente línea
+    end
+    
+    -- Dibujar la línea actual
+    if mostrarHistoria then
+        print(texto_mostrado, 15, y_offset, 12)
+    end
+end
+
 -- Posiciones relativas de los ojos desde la posición del personaje
 eye_offset_x_left, eye_offset_y = 4, 5  -- Posición del ojo izquierdo
 eye_offset_x_right = 14  -- Posición del ojo derecho
@@ -24,6 +116,23 @@ end
 
 function TIC()
     cls(0)  -- Limpia la pantalla
+    map(0, 120, 30, 135)  -- No funciona el fondo de pantalla al mostrar historia
+
+    
+    -- Si la historia aún está activa
+    if mostrarHistoria then
+        dibujarHistoria()
+        
+        -- Permitir saltar la historia con el botón "X"
+        if btnp(5) then  -- Botón "X"
+            mostrarHistoria = false
+        end
+        return
+    end
+
+    cls(0)
+
+    -- Dibujar el mapa
     map(0, 0, 30, 17)  -- Dibuja el mapa
     
     if not musicStarted then
@@ -37,7 +146,7 @@ function TIC()
     -- Calcular el ángulo hacia el mouse
     local angle = math.atan2(my - py, mx - px)
 
-    -- Dibujar el personaje (ajusta `spr` para la posición actual)
+    -- Dibujar el personaje (ajusta spr para la posición actual)
     spr(255, px, py, 0)  -- El sprite No. 255 es un sprite vacio
 
     -- Llamar a la función para dibujar los ojos mirando hacia el cursor
