@@ -11,12 +11,12 @@ texto_mostrado = ""  -- Texto que se muestra en pantalla
 
 -- Historia del juego
 local historia = { 
-    "En un tiempo de sombras y resistencia...", 
-    "un joven guerrero llamado Kallfü,", 
+    "_n un tiempo de sombras y resistencia...", 
+    "un joven guerrero llamado KallfU,", 
     "se encuentra atrapado en el caos.", 
     "",
     "Un ataque a su aldea lo lleva a huir,", 
-    "perdiéndose en las profundidades del ",
+    "perdiEndose en las profundidades del ",
     "bosque...", 
     "",
     "Pero en la oscuridad encuentra un", 
@@ -24,10 +24,10 @@ local historia = {
     "",
     "Dentro, una anciana lo espera.", 
     "La Machi, sanadora y protectora de", 
-    "espíritus.", 
+    "espIritus.", 
     "",
     "\"El portal ha sido abierto...\", dice ella.", 
-    "\"Tu misión está escrita en las estrellas.\"", 
+    "\"Tu misiOn estA  escrita en las estrellas.\"", 
     "",
     "Kallfü recibe un amuleto: el Püllü.", 
     "Un artefacto místico con un propósito",
@@ -50,7 +50,7 @@ local velocidad = 5  -- Velocidad de la escritura
 
 local texto_mostrado_lines = {}  -- Almacena las líneas de texto mostradas
 local scroll_speed = 1  -- Velocidad del scroll (aumenta para mover más rápido)
-local max_lines = 7  -- Número máximo de líneas visibles
+local max_lines = 6  -- Número máximo de líneas visibles
 
 -- Función para dibujar la historia del juego con escritura letra por letra
 function dibujarHistoria()
@@ -86,13 +86,16 @@ function dibujarHistoria()
     -- Dibujar las líneas de texto ya mostradas (scroll)
     local y_offset = 70  -- Desplazamiento vertical inicial
     for i = 1, #texto_mostrado_lines do
-        print(texto_mostrado_lines[i], 15, y_offset, 12)
+       -- print(texto_mostrado_lines[i], 15, y_offset, 12)
+       	drawWord(texto_mostrado_lines[i], 15, y_offset)
         y_offset = y_offset + 8  -- Aumenta el desplazamiento vertical para la siguiente línea
     end
     
     -- Dibujar la línea actual
     if mostrarHistoria then
-        print(texto_mostrado, 15, y_offset, 12)
+    			--drawLetter(texto_mostrado, 15, y-offset)
+      	drawWord(texto_mostrado,15,y_offset)
+      -- print(texto_mostrado, 15, y_offset, 12)
     end
 end
 
@@ -116,7 +119,7 @@ end
 
 function TIC()
     cls(0)  -- Limpia la pantalla
-    map(0, 120, 30, 135)  -- No funciona el fondo de pantalla al mostrar historia
+    map(0, 119, 30, 135)  -- No funciona el fondo de pantalla al mostrar historia
 
     
     -- Si la historia aún está activa
@@ -164,7 +167,7 @@ function TIC()
     end
 end
 
--- Definición de los meses
+-- Definicion de los meses
 months = {
     {spanish = "enero", mapudungun = "eneru"},
     {spanish = "febrero", mapudungun = "fewreru"},
@@ -204,13 +207,13 @@ function shuffle(t)
     end
 end
 
--- Función para dibujar el memorama
+-- Funcion para dibujar el memorama
 function dibujarMemorama()
     for i, card in ipairs(memorama) do
         local x = loc[i].x
         local y = loc[i].y
         
-        -- Mostrar carta si está volteada o emparejada
+        -- Mostrar carta si esat volteada o emparejada
         if card.flipped or card.matched then
             drawWord(card.text, x, y)
         else
@@ -228,7 +231,7 @@ function manejarClick()
             local y = loc[i].y
             
             -- Verificar si se hace clic en una carta
-            if mx > x and mx < x + w and my > y and my < y + h then
+            if mx+5 > x and mx < x + w and my > y-5 and my < y + h then
                 -- Asegurarse de que la carta no esté ya emparejada
                 if not card.matched then
                     if not firstCard then
@@ -289,7 +292,8 @@ local letterValues = {
     g = 342, h = 343, i = 344, j = 345, k = 346, l = 347,
     m = 348, n = 349, o = 350, p = 351, q = 352, r = 353,
     s = 354, t = 355, u = 356, v = 357, w = 358, x = 359,
-    y = 360, z = 361, N = 362, U = 363
+    y = 360, z = 361, N = 362, U = 363, I = 364, E = 365,
+    O = 366, A = 367, K = 368, _ = 370, 
 }
 
 function drawLetter(letter, x, y)
