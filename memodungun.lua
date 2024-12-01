@@ -11,36 +11,50 @@ texto_mostrado = ""  -- Texto que se muestra en pantalla
 
 -- Historia del juego
 local historia = { 
-    "_n un tiempo de sombras y resistencia...", 
-    "un joven guerrero llamado KallfU,", 
-    "se encuentra atrapado en el caos.", 
+    "_n un tiempo de oscuridad un ",
+    "joven guerrero llamado KallfU,", 
+    "se encuentra atrapado en el caosZ", 
     "",
-    "Un ataque a su aldea lo lleva a huir,", 
-    "perdiEndose en las profundidades del ",
-    "bosque...", 
+    "Hn ataque a su aldea lo lleva a ", 
+    "huirB perdiEndose dentro de aquel",
+    "profundo bosqueZZZ", 
     "",
     "Pero en la oscuridad encuentra un", 
-    "refugio. Una cueva, oculta y antigua.", 
+    "refugioZ Hna cuevaZ", 
     "",
-    "Dentro, una anciana lo espera.", 
-    "La Machi, sanadora y protectora de", 
-    "espIritus.", 
+    "DentroB una anciana lo esperaZ", 
+    "La MachiB sanadora y protectora", 
+    "de espIritusZ", 
     "",
-    "\"El portal ha sido abierto...\", dice ella.", 
-    "\"Tu misiOn estA  escrita en las estrellas.\"", 
+    "_l portal ha sido abiertoZZZ", 
+    "dice ellaZ", 
     "",
-    "Kallfü recibe un amuleto: el Püllü.", 
-    "Un artefacto místico con un propósito",
-    "claro...", 
+    "Tu misiOn estA escrita en las ", 
+    "estrellasZ KallfU recibe un ",
+    "amuletoZZZ el PUllUZ", 
+    "Hn artefacto mIstico con un" ,
+    "propOsitoZZZ", 
     "",
-    "A través del portal, enfrentará pruebas.", 
-    "Pruebas que desafiarán su mente y espíritu.", 
+    "G travEs del portal,enfrentarAs", 
+    "pruebas que desafiarAn su mente",
+    "y espIrituZ", 
     "",
-    "Los pilares de su cultura deben renacer.", 
-    "Números, colores, ciclos del tiempo...", 
+    "Los pilares de su cultura deben",
+    "renacerZ", 
     "",
-    "Y cuando todo parezca perdido...", 
-    "\"Recordarás quién eres y de dónde vienes.\""
+    "numerosZZZ",
+    "",
+    "coloresZZZ",
+    "",
+    "ciclos del tiempoZZZ", 
+    "",
+    "y cuando todo parezca perdidoZZZ", 
+    "",
+    "recordarAs quiEn eres",
+    "",
+    "y de dOnde",
+    "",
+    "vienesZZZ\""
 }
 
 local linea_actual = 1
@@ -50,7 +64,7 @@ local velocidad = 5  -- Velocidad de la escritura
 
 local texto_mostrado_lines = {}  -- Almacena las líneas de texto mostradas
 local scroll_speed = 1  -- Velocidad del scroll (aumenta para mover más rápido)
-local max_lines = 6  -- Número máximo de líneas visibles
+local max_lines = 5  -- Número máximo de líneas visibles
 
 -- Función para dibujar la historia del juego con escritura letra por letra
 function dibujarHistoria()
@@ -86,35 +100,64 @@ function dibujarHistoria()
     -- Dibujar las líneas de texto ya mostradas (scroll)
     local y_offset = 70  -- Desplazamiento vertical inicial
     for i = 1, #texto_mostrado_lines do
-       -- print(texto_mostrado_lines[i], 15, y_offset, 12)
-       	drawWord(texto_mostrado_lines[i], 15, y_offset)
+       -- print(texto_mostrado_lines[i], 15, y_offset, 17)
+       	drawWord(texto_mostrado_lines[i], 17, y_offset)
         y_offset = y_offset + 8  -- Aumenta el desplazamiento vertical para la siguiente línea
     end
     
     -- Dibujar la línea actual
     if mostrarHistoria then
     			--drawLetter(texto_mostrado, 15, y-offset)
-      	drawWord(texto_mostrado,15,y_offset)
-      -- print(texto_mostrado, 15, y_offset, 12)
+      	drawWord(texto_mostrado,17,y_offset)
+      -- print(texto_mostrado, 15, y_offset, 17)
     end
 end
-
 -- Posiciones relativas de los ojos desde la posición del personaje
 eye_offset_x_left, eye_offset_y = 4, 5  -- Posición del ojo izquierdo
 eye_offset_x_right = 14  -- Posición del ojo derecho
 eye_distance_x = 2  -- Desplazamiento máximo horizontal de la pupila
 eye_distance_y = 1  -- Desplazamiento máximo vertical de la pupila
 
--- Función para dibujar las pupilas mirando hacia el cursor
-function dibujarOjos(px, py, angle)
-    -- Calcular el desplazamiento de las pupilas en la dirección del cursor
-    local eye_x_offset = math.cos(angle) * eye_distance_x
-    local eye_y_offset = math.sin(angle) * eye_distance_y
+-- Variables para el parpadeo
+local blink_timer = 0        -- Contador para el parpadeo
+local blink_duration = 10    -- Duración del parpadeo (en frames)
+local blink_interval = 120   -- Intervalo entre parpadeos (en frames)
+local is_blinking = false    -- Estado de parpadeo
 
-    -- Dibujar el punto del ojo izquierdo
-    pix(px + eye_offset_x_left + eye_x_offset, py + eye_offset_y + eye_y_offset, 0)  
-    -- Dibujar el punto del ojo derecho
-    pix(px + eye_offset_x_right + eye_x_offset, py + eye_offset_y + eye_y_offset, 0)  
+-- Función para dibujar los ojos (abiertos o cerrados)
+function dibujarOjos(px, py, angle)
+    if is_blinking then
+        -- Dibujar ojos cerrados (línea horizontal)
+        line(px-2 + eye_offset_x_left, py + eye_offset_y, px + eye_offset_x_left + 1, py + eye_offset_y, 3)
+        line(px-2 + eye_offset_x_right, py + eye_offset_y, px + eye_offset_x_right + 1, py + eye_offset_y, 3)
+        -- line(px+1 + eye_offset_x_left, py-1 + eye_offset_y, px, py + eye_offset_y, 3)
+        -- line(px+1 + eye_offset_x_right, py-1 + eye_offset_y, px, py + eye_offset_y, 3)
+    else
+        -- Calcular el desplazamiento de las pupilas en la dirección del cursor
+        local eye_x_offset = math.cos(angle) * eye_distance_x
+        local eye_y_offset = math.sin(angle) * eye_distance_y
+
+        -- Dibujar el punto del ojo izquierdo
+        pix(px + eye_offset_x_left + eye_x_offset, py + eye_offset_y + eye_y_offset, 0)
+        -- Dibujar el punto del ojo derecho
+        pix(px + eye_offset_x_right + eye_x_offset, py + eye_offset_y + eye_y_offset, 0)
+    end
+end
+
+-- Actualizar el estado del parpadeo
+function actualizarParpadeo()
+    blink_timer = blink_timer + 1
+    if is_blinking then
+        if blink_timer >= blink_duration then
+            is_blinking = false
+            blink_timer = 0
+        end
+    else
+        if blink_timer >= blink_interval then
+            is_blinking = true
+            blink_timer = 0
+        end
+    end
 end
 
 function TIC()
@@ -125,7 +168,15 @@ function TIC()
     -- Si la historia aún está activa
     if mostrarHistoria then
         dibujarHistoria()
-        
+
+        -- boton z para acelerar historia
+        if btnp(4) then  -- Botón "Z"
+            velocidad = velocidad - 1  -- Aumenta la velocidad de texto
+            if velocidad < 1 then
+                velocidad = 1
+            end
+        end
+
         -- Permitir saltar la historia con el botón "X"
         if btnp(5) then  -- Botón "X"
             mostrarHistoria = false
@@ -152,7 +203,7 @@ function TIC()
     -- Dibujar el personaje (ajusta spr para la posición actual)
     spr(255, px, py, 0)  -- El sprite No. 255 es un sprite vacio
 
-    -- Llamar a la función para dibujar los ojos mirando hacia el cursor
+    actualizarParpadeo()
     dibujarOjos(px, py, angle)
 
     -- Otros elementos del juego
@@ -293,7 +344,9 @@ local letterValues = {
     m = 348, n = 349, o = 350, p = 351, q = 352, r = 353,
     s = 354, t = 355, u = 356, v = 357, w = 358, x = 359,
     y = 360, z = 361, N = 362, U = 363, I = 364, E = 365,
-    O = 366, A = 367, K = 368, _ = 370, 
+    O = 366, A = 367, K = 368, _ = 370, Z = 371, B = 372,
+    L = 373, M = 374, C = 375, P = 376, S = 377, T = 378,
+    D = 379, G = 380, H = 369,
 }
 
 function drawLetter(letter, x, y)
