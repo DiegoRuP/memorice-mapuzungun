@@ -30,7 +30,8 @@
         puntos_x = inicial_x + 25
         puntos_y = inicial_y + 10
         spr(381, puntos_x, puntos_y, 0)
-        spr(381, puntos_x, puntos_y+8, 0, 1, 2) 
+        spr(381, puntos_x, puntos_y+8, 0, 1, 2)
+        
         
         print(opcion_seleccionada, puntos_x+18, puntos_y, 12,false, 3)
 
@@ -161,10 +162,15 @@
     local texto_mostrado_lines = {}  -- Almacena las líneas de texto mostradas
     local scroll_speed = 1  -- Velocidad del scroll (aumenta para mover más rápido)
     local max_lines = 5  -- Número máximo de líneas visibles
-
+    local opening_x = 80
+    local opening_y = 50
+    local direction = 1
+    local skin = 9
     -- Función para dibujar la historia del juego con escritura letra por letra
     function dibujarHistoria()
         map(0, 119, 30, 135)
+        
+        
         -- Incrementa el contador de tiempo
         tiempo = tiempo + 1
 
@@ -204,6 +210,21 @@
         -- Dibujar la línea actual
         if mostrarHistoria then
             drawWord(texto_mostrado,17,y_offset)
+            
+            if opening_x <= 80 then
+                direction = 1
+                skin = 9
+            elseif opening_x >= 120 then 
+                direction = -1
+                skin = 26
+            end
+            opening_x = opening_x + (t%60//20)/10*direction
+            spr(skin+t%60//20, opening_x,opening_y, 0)
+            spr(25, 130,40,0,2)--cueva
+            spr(40+t%60//20, 130, 17 , 0, 2)--luna
+            spr(57+t%60//20, 110, 20 , 0)--estrellas
+            spr(57+t%60//20, 100, 30 , 0,1,2)--estrellas
+            spr(57+t%60//20, 90, 15 , 0, 1, 3)--estrellas
         end
     end
     -- Posiciones relativas de los ojos desde la posición del personaje
@@ -542,7 +563,6 @@
             texto_mostrado_lines={}
         end,
         actualizar = function()
-            
             if mostrarHistoria then
                 dibujarHistoria()
                 if not musicStarted then
