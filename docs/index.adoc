@@ -1,0 +1,63 @@
+= Documentación del Proyecto: Ñamku
+Autor: UgaBuGames
+Version : 1.0
+:toc: left
+:toc-title: Contenido
+:sectnums:
+:sectnumlevels: 3
+
+== ¿Quíen es UgaBuGames?
+UgaBuGames es un grupo de estudiantes de la Universidad de Viña del Mar, que se dedica a la creación de videojuegos educativos y de entretenimiento, con el objetivo de fomentar el aprendizaje y la difusión de la cultura chilena. 
+
+image::imagenes/ugabuicon.png[UgaBuGames]
+
+== ¿Que es Ñamku?
+La definicion de ñamku es "Espíritu ido" suelen referirse así al Aguilucho, es un ave rapaz que se encuentra en la región de la Araucanía, Chile.
+
+== Introducción
+Este documento contiene toda la información necesaria sobre el proyecto **Ñamku**, un videojuego desarrollado en el motor _TIC-80_, con el objetivo de ser posteriormente porteado a plataformas Web, Android e iOS.
+
+**Ñamku** es un videojuego tipo memorice con fines educativos, diseñado para fomentar el aprendizaje y la difusión del idioma nativo chileno, **Mapuzungun**. Su principal enfoque es ofrecer una experiencia entretenida e interactiva que combine mecánicas simples con contenido cultural enriquecedor.
+
+== Guía de la Documentación
+
+=== Product Requirement Document (PRD)
+El PRD define los objetivos, requisitos y especificaciones del juego.
+Incluye:
+
+- **Personas**: Perfiles de los usuarios objetivo.
+- **Casos de Uso**: Ejemplos detallados de cómo los usuarios interactúan con el juego.
+- **Decisiones Arquitectónicas (ADR)**: Documentación de decisiones clave en el desarrollo del proyecto.
+
+[Enlace al PRD](prd/prd.adoc)
+[Enlace a ADR](prd/adr.adoc)
+[Enlace a requisitos](prd/requisitos.adoc)
+[Enlace a diseño](prd/diseño.adoc)
+[Enlace a personas](prd/personas.adoc)
+[Enlace a casos de uso y storyboard](prd/casos.adoc)
+
+=== Pruebas de Aceptación del Usuario (UAT)
+El plan de pruebas UAT asegura que el juego cumple con las expectativas del usuario. 
+Incluye:
+
+- **Plan de pruebas**: Estrategias y objetivos.
+- **Casos de Prueba**: Escenarios específicos que deben validarse.
+- **Resultados de las pruebas**: Retroalimentación y métricas de éxito.
+
+[Enlace al Plan de Pruebas](uat/plan_usuarios.adoc)
+
+=== Recursos
+Incluye referencias como información, traducciones, imágenes y colores utilizados en el juego.
+
+[Enlace a los Recursos](recursos/colores.adoc)
+
+== Créditos
+
+- **Desarrolladores**: Diego Ruan Padilla - Boris Herrera Flores
+- **Diseñador**: Diego Ruan Padilla - Boris Herrera Flores
+- **Tester**: Diego Ruan Padilla - Boris Herrera Flores
+
+== Licencia
+
+Este proyecto se encuentra bajo la licencia AGPL-3.0 license. Consulta el archivo `LICENSE` para más detalles.
+

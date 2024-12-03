@@ -19,7 +19,7 @@ A continación se muestran las palabras que forman parte del videojuego:
 
 ## 2. Nombre de la empresa y logo
 ### 2.1 Nombre de la empresa
-Placeholder name
+UgaBuGames
 ### 2.2 Motivación
 #### 2.2.1 Visión
 Nosotros aspiramos a ser líderes en la creación de experiencias de juego que integren y promuevan la riqueza cultural y lingüística de los idiomas nativos americanos, utilizándolos como una herramienta educativa en plataformas accesibles y modernas. Queremos ofrecer una experiencia que no solo entretenga, sino que también permita a los jugadores conectar y aprender de estas lenguas y culturas de manera significativa.

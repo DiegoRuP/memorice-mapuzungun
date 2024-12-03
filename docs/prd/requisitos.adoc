@@ -1,0 +1,58 @@
+== Requisitos funcionales y no funcionales
+
+=== Requisitos funcionales
+
+- **Inicio de partida**
+
+** El sistema debe permitir al jugador iniciar una nueva partida desde el menú principal.
+** El sistema debe mostrar instrucciones breves al comenzar una nueva partida.
+
+- **Progresión en el juego**
+
+** El sistema debe registrar y mostrar el progreso del jugador entre niveles.
+** El sistema debe desbloquear automáticamente el siguiente nivel cuando el jugador complete uno.
+
+- **Mecánica de emparejamiento**
+
+** El sistema debe permitir al jugador seleccionar y emparejar tarjetas.
+** Si el jugador selecciona un par incorrecto, el sistema debe mostrar un aviso y devolver las tarjetas a su posición inicial.
+
+- **Glosario de palabras Mapuzungun**
+
+** El sistema debe incluir un glosario accesible desde el menú principal.
+** El glosario debe mostrar palabras en Mapuzungun con su traducción.
+
+- **Puntuación y recompensas**
+
+** El sistema debe calcular una puntuación basada en el tiempo y los intentos realizados por el jugador.
+** El sistema debe ofrecer una recompensa visual (como animaciones o efectos) al completar un nivel.
+
+- **Compatibilidad multiplataforma**
+
+** El juego debe ser jugable en navegadores web, Android e iOS.
+
+=== Requisitos no funcionales
+
+- **Rendimiento**
+
+** El sistema debe mantener una tasa de cuadros por segundo (FPS) estable de al menos 30 FPS en todas las plataformas compatibles.
+
+** El tiempo de carga entre niveles no debe exceder 2 segundos.
+
+- **Escalabilidad** 
+
+** El sistema debe permitir la adición de nuevos niveles y palabras al glosario sin requerir cambios significativos en el código base.
+
+- **Interfaz de usuario**
+
+** El diseño debe ser intuitivo, con botones y textos claros para un rango de edades amplio (niños, jóvenes y adultos).
+** Los colores y gráficos deben ser consistentes con la temática cultural del juego.
+
+- **Seguridad**
+
+** La aplicación no debe recopilar información personal del jugador.
+** Los datos del jugador (como su progreso) deben almacenarse localmente.
+
+- **Portabilidad**
+
+** El código del juego debe ser fácilmente portable desde TIC-80 a plataformas móviles y web.

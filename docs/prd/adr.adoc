@@ -1,0 +1,54 @@
+== ADR
+
+== ADR 1: Elección del Lenguaje de Programación - Lua vs. JavaScript
+
+== Contexto
+El proyecto Ñamku se desarrollará en TIC-80, una consola de fantasía para crear juegos 8-bit. TIC-80 soporta múltiples lenguajes de programación, incluidos *Lua* y *JavaScript*. Es necesario decidir cuál de estos lenguajes se utilizará para implementar el juego.
+
+== Decisión
+Se decidió utilizar *Lua* como lenguaje de programación principal en lugar de JavaScript.
+
+== Razones
+1. *Simplicidad y facilidad de aprendizaje*  
+Lua tiene una sintaxis más sencilla y minimalista, lo que reduce la complejidad del desarrollo y facilita el mantenimiento del código. Es ideal para proyectos educativos y pequeños como los típicos en TIC-80.
+
+2. *Rendimiento en TIC-80*  
+Lua es el lenguaje nativo en TIC-80, optimizado para ofrecer un mejor rendimiento y menor consumo de recursos en este entorno.
+
+3. *Integración con TIC-80*  
+Las funciones integradas y las APIs de TIC-80 están diseñadas principalmente con Lua en mente, lo que simplifica la implementación de funcionalidades específicas del motor.
+
+4. *Portabilidad*  
+Lua permite portar fácilmente el proyecto a otras plataformas soportadas por TIC-80, ya que es el lenguaje preferido por la comunidad TIC-80.
+
+5. *Curva de aprendizaje*  
+Lua es más accesible para desarrolladores principiantes o equipos pequeños, mientras que JavaScript puede requerir un mayor conocimiento previo debido a su ecosistema más complejo.
+
+== Consecuencias
+- El equipo debe centrarse en aprender y optimizar el uso de Lua para TIC-80.
+- La implementación podría limitarse a las capacidades que Lua y TIC-80 ofrecen de forma nativa, pero esto es aceptable dado el alcance del proyecto.
+
+== ADR 2: Implementación de un glosario dentro del juego
+
+== Contexto
+El objetivo principal del juego es enseñar palabras básicas en *Mapuzungun*. Es necesario decidir si el glosario será un elemento separado fuera del juego o estará integrado dentro de la experiencia.
+
+== Decisión
+Se decidió integrar el glosario como parte del juego interactivo, accesible desde el menú principal.
+
+== Razones
+1. *Aprendizaje continuo*  
+Permite a los jugadores consultar palabras mientras juegan, facilitando el aprendizaje en contexto.
+
+2. *Inmersión educativa*  
+Al ser parte del juego, el glosario fomenta la exploración activa en lugar de ser un recurso externo pasivo.
+
+3. *Accesibilidad*  
+Los jugadores pueden acceder rápidamente al glosario sin necesidad de salir del juego, lo que mejora la experiencia de usuario.
+
+4. *Simplicidad técnica*  
+Implementar el glosario como parte de las pantallas del juego simplifica la integración, usando recursos existentes como los mapas y textos renderizados.
+
+== Consecuencias
+- Se debe diseñar una interfaz sencilla y accesible para el glosario dentro de las limitaciones de TIC-80.
+- Requiere un diseño cuidadoso para no interrumpir el flujo del juego.

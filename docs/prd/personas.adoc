@@ -1,0 +1,69 @@
+== Personas 
+
+=== Persona Positiva: Entusiasta de la cultura chilena y lenguajes nativo americanos
+- **Nombre**: Eugenio Chávez  
+- **Edad**: 12 años  
+- **Ocupación**: Estudiante  
+- **Motivación**:  
+  1. Aprender cosas nuevas en la escuela.  
+  2. Poder comunicarse con su compañerito de ascendencia indígena.  
+  3. Divertirse jugando videojuegos.  
+- **Comportamiento**:  
+  * Juega videojuegos educativos para complementar lo aprendido en clases.  
+  * Comparte sus logros con amigos y familiares.  
+  * Busca recursos en línea para profundizar su conocimiento.  
+- **Necesidades**:  
+  * Juegos entretenidos que lo mantengan enganchado mientras aprende.  
+  * Contenido claro y adaptado a su nivel de conocimiento.  
+  * Recompensas dentro del juego que refuercen su aprendizaje.  
+
+=== Persona Positiva: Adulto interesado en preservar la cultura Mapuche
+- **Nombre**: Camila Reyes  
+- **Edad**: 28 años  
+- **Ocupación**: Abogada  
+- **Motivación**:  
+  1. Conectar con sus raíces culturales.  
+  2. Aprender Mapuzungun como segundo idioma.  
+  3. Apoyar proyectos educativos innovadores.  
+- **Comportamiento**:  
+  * Descarga aplicaciones móviles educativas.  
+  * Participa en foros sobre preservación de lenguas indígenas.  
+  * Comparte el juego con su círculo de amigos y familiares.  
+- **Necesidades**:  
+  * Material didáctico que explique conceptos culturales.  
+  * Juegos que puedan ser jugados en ratos libres.  
+  * Una interfaz sencilla y amigable.  
+
+=== Persona Negativa: Usuario poco interesado en lenguas nativas
+- **Nombre**: Andrés Ramírez  
+- **Edad**: 34 años  
+- **Ocupación**: Ingeniero en sistemas  
+- **Motivación**:  
+  1. Prefiere juegos de alta acción o estrategia.  
+  2. Considera los videojuegos educativos poco desafiantes.  
+  3. Tiene poco tiempo para aprender cosas nuevas.  
+- **Comportamiento**:  
+  * Ignora juegos educativos en tiendas de aplicaciones.  
+  * Se enfoca en juegos que le ofrezcan entretenimiento inmediato.  
+  * Evita actividades que perciba como demasiado "serias".  
+- **Necesidades**:  
+  * Juegos con mecánicas que combinen aprendizaje y diversión.  
+  * Desafíos que lo mantengan comprometido.  
+  * Breves tutoriales que no lo sobrecarguen de información.  
+
+=== Persona Negativa: Desconfiado en la tecnología educativa
+- **Nombre**: Marcela Ponce  
+- **Edad**: 40 años  
+- **Ocupación**: Profesora de primaria  
+- **Motivación**:  
+  1. Desconfía de la eficacia de los juegos para enseñar.  
+  2. Prefiere métodos tradicionales de enseñanza.  
+  3. Busca proteger a los niños de contenido inapropiado.  
+- **Comportamiento**:  
+  * Revisa cada recurso educativo antes de recomendarlo.  
+  * Evita el uso excesivo de tecnología en el aula.  
+  * Prefiere enseñar usando libros o actividades prácticas.  
+- **Necesidades**:  
+  * Información clara sobre los beneficios educativos del juego.  
+  * Controles parentales para supervisar el uso del juego.  
+  * Garantías de que el contenido es apropiado para niños.  
