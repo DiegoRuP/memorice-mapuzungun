@@ -1,0 +1,32 @@
+== Casos de Prueba de Aceptación
+
+== Introducción
+Este documento contiene los casos de prueba que los usuarios ejecutarán para validar el juego Ñamku.
+
+== Caso de Prueba 1: Navegación en el menú principal
+- *Objetivo*: Validar que los usuarios pueden navegar por el menú principal sin problemas.
+- *Precondiciones*: El juego está ejecutándose en la pantalla de inicio.
+- *Pasos*:
+  1. Seleccionar la opción "Jugar".
+  2. Navegar al glosario.
+  3. Regresar al menú principal.
+- *Resultado esperado*: Todas las opciones son accesibles y funcionales.
+- *Resultado real*: [Espacio para retroalimentación].
+
+== Caso de Prueba 2: Selección de niveles
+- *Objetivo*: Comprobar que los niveles pueden ser seleccionados y cargados correctamente.
+- *Precondiciones*: El usuario está en la pantalla de selección de nivel.
+- *Pasos*:
+  1. Seleccionar un nivel.
+  2. Confirmar la selección.
+- *Resultado esperado*: El nivel seleccionado carga correctamente.
+- *Resultado real*: [Espacio para retroalimentación].
+
+== Caso de Prueba 3: Usabilidad en dispositivos móviles
+- *Objetivo*: Validar la funcionalidad del juego en pantallas táctiles.
+- *Precondiciones*: El juego está abierto en un dispositivo móvil.
+- *Pasos*:
+  1. Interactuar con el menú usando toques.
+  2. Completar un nivel usando controles táctiles.
+- *Resultado esperado*: El juego responde correctamente al tacto.
+- *Resultado real*: [Espacio para retroalimentación].

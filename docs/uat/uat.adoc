@@ -1,1 +1,31 @@
-hola mundo
+= Plan de Pruebas para Usuarios
+
+== Introducción
+Este plan describe las pruebas de aceptación del usuario (UAT) para el proyecto Ñamku. El propósito es validar que el juego cumple con los requisitos establecidos y es adecuado para su propósito.
+
+== Objetivos
+- Validar que las funcionalidades principales del juego funcionan como se espera.
+- Confirmar que el juego cumple con los requisitos educativos y técnicos.
+- Garantizar una experiencia positiva para los usuarios finales.
+
+== Alcance
+Las pruebas de UAT incluirán:
+1. Funcionalidades del juego (navegación, interacciones, objetivos).
+2. Aspectos educativos (aprendizaje del idioma Mapuzungun).
+3. Compatibilidad multiplataforma (Web, Android, iOS).
+
+== Roles y Responsabilidades
+- *Equipo de desarrollo*: Resolver problemas encontrados durante la prueba.
+- *Usuarios de prueba*: Ejecutar los casos de prueba y proporcionar retroalimentación.
+
+== Criterios de Aceptación
+El juego se considerará aceptado si:
+- El 90% de los casos de prueba son exitosos.
+- No hay defectos críticos bloqueantes.
+- Los usuarios finales consideran que la experiencia es intuitiva y educativa.
+
+== Cronograma
+Las pruebas de aceptación se realizarán entre el 3 y 4 de diciembre de 2024.
+
+== Herramientas
+Las pruebas se documentarán usando formularios de retroalimentación y hojas de cálculo para el seguimiento de resultados.

@@ -3,21 +3,21 @@
 
 == Casos de uso 
 
-=== Caso de Uso 1: Iniciar una partida
+== Caso de Uso 1: Iniciar una partida
 - Actor principal: Jugador
 - Descripción: El jugador selecciona la opción "Jugar" desde el menú principal para comenzar una nueva partida.
 
-==== Flujo principal:
+=== Flujo principal:
 
 1. El jugador abre el juego y visualiza el menú principal.
 2. Selecciona "Jugar" desde el menú principal.
 3. Aparece una pantalla con instrucciones breves sobre cómo jugar.
 4. El primer nivel se carga y el jugador comienza a emparejar tarjetas.
 
-==== Resultado esperado: 
+=== Resultado esperado: 
 El jugador inicia el juego correctamente y se le presenta el primer conjunto de tarjetas.
 
-==== Storyboard
+=== Storyboard
 
 [plantuml, iniciar_partida, png]
 ----
@@ -37,21 +37,21 @@ stop
 @enduml
 ----
 
-=== Caso de Uso 2: Completar un nivel
+== Caso de Uso 2: Completar un nivel
 - Actor principal: Jugador.
 - Descripción: El jugador empareja correctamente todas las tarjetas en un nivel y avanza al siguiente.
 
-==== Flujo principal:
+=== Flujo principal:
 
 1. El jugador selecciona y empareja tarjetas correctamente.
 2. Todas las tarjetas del nivel se emparejan y desaparecen.
 3. Aparece una pantalla de felicitación con la opción de continuar al siguiente nivel.
 4. El jugador selecciona "Continuar" y el siguiente nivel se carga.
 
-==== Resultado esperado: 
+=== Resultado esperado: 
 El jugador avanza al siguiente nivel y el progreso se guarda.
 
-==== Storyboard
+=== Storyboard
 
 [plantuml, completar_nivel, png]
 ----
@@ -73,16 +73,16 @@ stop
 ----
 
 
-=== Caso de Uso 3: Acceder al glosario de Mapuzungun
+== Caso de Uso 3: Acceder al glosario de Mapuzungun
 - Actor principal: Jugador.
 - Descripción: El jugador accede al glosario desde el menú principal para revisar palabras.
 
-==== Flujo principal:
+=== Flujo principal:
 1. Desde el menú principal, el jugador selecciona la opción "Glosario".
 2. Se abre una nueva pantalla con una lista de palabras en Mapuzungun y sus traducciones.
 3. El jugador navega por la lista.
 
-==== Resultado esperado:
+=== Resultado esperado:
 El jugador explora el glosario y aprende palabras en Mapuzungun.
 
 == StoryBoard
