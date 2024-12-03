@@ -85,7 +85,9 @@
                     cambiarNivel("creditos")
                 end
             end
-            
+        else
+            rect(inicial_x-13,inicial_y+28,120,20,14)
+            print("INICIAR", inicial_x-10, inicial_y+30,12, false, 3)
         end
         
     
@@ -166,11 +168,56 @@
     local opening_y = 50
     local direction = 1
     local skin = 9
+
+    function volverMenu()
+        
+        mx, my, left, middle, right = mouse()
+        if (mx>=180 and mx < 205) and (my>=1 and my <=9) then
+            if left then
+                cambiarNivel("menu")
+            end
+        end
+        --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
+        rect(180,2,26,8,3)       
+        print("MENU", 181, 3,12+t%60//20)
+    end
+
+    function siguienteNivel(nivelActual)
+        mx, my, left, middle, right = mouse()
+        --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
+        rect(115,66,27,35,3+t%60//20)    
+        spr(381, 120, 70, 0, 2, 1)
+        spr(381, 120, 82, 0, 2, 3)  
+        print("Siguiente Nivel", 40, 50,12, false, 2)
+        if (mx>=115 and mx < 141) and (my>=66 and my <=101) then
+            if left then
+                if nivelActual == 1 then
+                    cambiarNivel("nivel2")
+                elseif nivelActual == 2 then
+                    cambiarNivel("nivel3")
+                elseif nivelActual == 3 then
+                    cambiarNivel("nivel4")
+                elseif nivelActual == 4 then
+                    cambiarNivel("creditos")
+                end
+            end
+        end
+        
+    end
+
     -- Función para dibujar la historia del juego con escritura letra por letra
     function dibujarHistoria()
         map(0, 119, 30, 135)
-        
-        
+        rect(180,40,37,8,14+t%60//10)
+       
+        print("SALTAR", 181, 41,12, false, 1)
+        mx, my, left, middle, right = mouse()
+        if (mx>=180 and mx < 215) and (my>=40 and my <=50) then
+            if left then
+                    mostrarHistoria = false
+            end
+        end
+        --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
         -- Incrementa el contador de tiempo
         tiempo = tiempo + 1
 
@@ -623,6 +670,7 @@
         dibujar = function()
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
+            volverMenu()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             dibujarMemorama(memorama)
@@ -631,7 +679,9 @@
                 cls(0)
                 music(-1) 
                 musicStarted = false
-                print("Ganaste! Encontraste todos los pares.", 20, 100, 12)
+                volverMenu()
+                siguienteNivel(1)
+                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
             end
         end
     }
@@ -662,6 +712,7 @@
         dibujar = function()
             cls()
             map(0, 0, 30, 17) 
+            volverMenu()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -671,7 +722,8 @@
                 cls()
                 music(-1) 
                 musicStarted = false
-                print("Ganaste! Encontraste todos los pares.", 20, 100, 12)
+                siguienteNivel(2)
+                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
             end
         end
     }
@@ -701,6 +753,7 @@
         dibujar = function()
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
+            volverMenu()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -710,7 +763,8 @@
                 cls(0)
                 music(-1) 
                 musicStarted = false
-                print("Ganaste! Encontraste todos los pares.", 20, 100, 12)
+                siguienteNivel(3)
+                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
             end
         end
     }
@@ -741,6 +795,7 @@
         dibujar = function()
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
+            volverMenu()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -750,7 +805,8 @@
                 cls(0)
                 music(-1) 
                 musicStarted = false
-                print("Ganaste! Encontraste todos los pares.", 20, 100, 12)
+                siguienteNivel(4)
+                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
             end
         end
     }
@@ -783,7 +839,7 @@
             start_x = 28
             start_y = 71
             for i = 1, 24  do
-           					spr(117,start_x, start_y,0)
+           		spr(117,start_x, start_y,0)
                 start_x = start_x + 8 	
             end
             actualizarMenu(opcion_seleccionada)
@@ -800,6 +856,7 @@
             end
         end,
         dibujar = function()
+            
             dibujarMenu(opcion_seleccionada)
         end
     }
