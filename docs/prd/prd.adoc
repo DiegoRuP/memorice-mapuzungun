@@ -7,13 +7,13 @@ Autor: UgaBuGames
 
 == Resumen Ejecutivo
 
-=== Objetivo
+== Objetivo
 El objetivo de este documento es detallar los requisitos y especificaciones del proyecto **Ñamku**, un juego desarrollado en TIC-80 usando Lua. Este juego busca ofrecer un enfoque educativo, diseñado para fomentar el aprendizaje y la difusión del idioma nativo chileno, **Mapuzungun**. Su principal enfoque es ofrecer una experiencia entretenida e interactiva que combine mecánicas simples con contenido cultural enriquecedor.
 
-=== Visión
+== Visión
 La visión de este proyecto es contribuir al rescate del patrimonio lingüístico, permitiendo que jugadores de diferentes edades y contextos se familiaricen con palabras, sonidos y conceptos básicos del **Mapuzungun**, mientras disfrutan de una dinámica de juego accesible y atractiva.
 
-=== Alcance
+== Alcance
 **Ñamku** será un juego tipo memorice interactivo que enseñará palabras en **Mapuzungun** mediante la mecánica de emparejar tarjetas. El juego incluirá:
 
 - Niveles ajustados a temas en especifico entre ellos: colores, partes del cuerpo, meses, dias de la semana, números y verbos comunes.
@@ -23,7 +23,7 @@ La visión de este proyecto es contribuir al rescate del patrimonio lingüístic
 
 El alcance del proyecto incluye el desarrollo de los niveles, la integración de las mecánicas educativas, y la implementación de funcionalidades básicas como la interfaz gráfica, los sonidos y la exportación a las plataformas mencionadas. El contenido del juego estará limitado a un conjunto inicial de palabras con la posibilidad de añadir más en futuras actualizaciones y frases.
 
-=== Audiencia objetivo
+== Audiencia objetivo
 Nuestra audiencia objetivo es un público entusiasta de la cultura chilena y el aprendizaje de idiomas, compuesto principalmente por:
 
 - **Jóvenes estudiantes** interesados en aprender **Mapuzungun** de manera lúdica y accesible.

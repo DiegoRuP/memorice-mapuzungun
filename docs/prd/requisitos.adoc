@@ -1,6 +1,6 @@
 == Requisitos funcionales y no funcionales
 
-=== Requisitos funcionales
+== Requisitos funcionales
 
 - **Inicio de partida**
 
@@ -31,7 +31,7 @@
 
 ** El juego debe ser jugable en navegadores web, Android e iOS.
 
-=== Requisitos no funcionales
+== Requisitos no funcionales
 
 - **Rendimiento**
 

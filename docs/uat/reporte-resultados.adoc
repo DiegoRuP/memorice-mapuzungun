@@ -1,0 +1,25 @@
+= Reporte de Resultados de Pruebas de Aceptación
+
+== Resumen
+Las pruebas de aceptación para Ñamku se llevaron a cabo entre el 3 y el 4 de diciembre de 2024. Este documento resume los resultados y destaca las áreas que requieren atención.
+
+== Resultados Generales
+- *Total de casos de prueba*: 10
+- *Casos exitosos*: --
+- *Casos fallidos*: --
+
+== Detalle de Resultados
+=== Caso de Prueba 1: Navegación en el menú principal
+- *Estado*: --
+- *Comentarios*: --
+
+=== Caso de Prueba 2: Selección de niveles
+- *Estado*: -- 
+- *Comentarios*: --
+
+=== Caso de Prueba 3: Usabilidad en dispositivos móviles
+- *Estado*: --
+- *Comentarios*: --
+
+== Conclusión
+--

@@ -1,6 +1,6 @@
 == Personas 
 
-=== Persona Positiva: Entusiasta de la cultura chilena y lenguajes nativo americanos
+== Persona Positiva: Entusiasta de la cultura chilena y lenguajes nativo americanos
 - **Nombre**: Eugenio Chávez  
 - **Edad**: 12 años  
 - **Ocupación**: Estudiante  
@@ -17,7 +17,7 @@
   * Contenido claro y adaptado a su nivel de conocimiento.  
   * Recompensas dentro del juego que refuercen su aprendizaje.  
 
-=== Persona Positiva: Adulto interesado en preservar la cultura Mapuche
+== Persona Positiva: Adulto interesado en preservar la cultura Mapuche
 - **Nombre**: Camila Reyes  
 - **Edad**: 28 años  
 - **Ocupación**: Abogada  
@@ -34,7 +34,7 @@
   * Juegos que puedan ser jugados en ratos libres.  
   * Una interfaz sencilla y amigable.  
 
-=== Persona Negativa: Usuario poco interesado en lenguas nativas
+== Persona Negativa: Usuario poco interesado en lenguas nativas
 - **Nombre**: Andrés Ramírez  
 - **Edad**: 34 años  
 - **Ocupación**: Ingeniero en sistemas  
@@ -51,7 +51,7 @@
   * Desafíos que lo mantengan comprometido.  
   * Breves tutoriales que no lo sobrecarguen de información.  
 
-=== Persona Negativa: Desconfiado en la tecnología educativa
+== Persona Negativa: Desconfiado en la tecnología educativa
 - **Nombre**: Marcela Ponce  
 - **Edad**: 40 años  
 - **Ocupación**: Profesora de primaria  
