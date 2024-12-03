@@ -52,3 +52,105 @@ Implementar el glosario como parte de las pantallas del juego simplifica la inte
 == Consecuencias
 - Se debe diseñar una interfaz sencilla y accesible para el glosario dentro de las limitaciones de TIC-80.
 - Requiere un diseño cuidadoso para no interrumpir el flujo del juego.
+
+== ADR 3: Uso de GitHub Pages para el hosteo gratuito del juego
+
+== Contexto
+El proyecto Ñamku requiere una solución para hospedar la versión web del juego de manera gratuita, accesible y fácil de configurar. Las opciones consideradas incluyen servicios como *Netlify*, *Neocities* y *GitHub Pages*.
+
+== Decisión
+Se decidió utilizar *GitHub Pages* para hospedar la versión web del juego.
+
+== Razones
+1. *Costo cero*  
+GitHub Pages ofrece un servicio gratuito para hospedar sitios web estáticos, lo cual es ideal para el presupuesto del proyecto.
+
+2. *Integración con el repositorio*  
+Como el proyecto ya se encuentra alojado en GitHub, GitHub Pages permite una integración directa y sencilla, simplificando el flujo de trabajo.
+
+3. *Automatización del despliegue*  
+El despliegue del sitio se puede automatizar fácilmente utilizando GitHub Actions, permitiendo que los cambios en el repositorio se reflejen automáticamente en la versión publicada.
+
+4. *Facilidad de acceso*  
+GitHub Pages proporciona una URL directa y accesible para compartir el juego con los usuarios.
+
+== Consecuencias
+- El equipo debe configurar correctamente el repositorio para que GitHub Pages sirva la versión web del juego.
+- Al ser una solución para contenido estático, cualquier funcionalidad adicional debe ser compatible con las restricciones del entorno de GitHub Pages.
+
+== ADR 4: Uso de Android Studio y Swift para los wrappers de aplicaciones móviles
+
+== Contexto
+El proyecto Ñamku necesita ser porteado a dispositivos móviles, específicamente para las plataformas *Android* e *iOS*. Se requiere una solución para empaquetar el juego desarrollado en TIC-80 como aplicaciones móviles nativas.
+
+== Decisión
+Se decidió utilizar *Android Studio* para crear el wrapper de la aplicación Android y *Swift* para el desarrollo del wrapper en iOS.
+
+== Razones
+1. *Compatibilidad con las plataformas nativas*  
+Android Studio es el entorno oficial para desarrollo Android, y Swift es el lenguaje estándar para aplicaciones iOS, garantizando compatibilidad y soporte nativo.
+
+2. *Optimización para cada sistema operativo*  
+Estas herramientas permiten aprovechar características específicas de cada plataforma, como notificaciones o ajustes de pantalla, sin comprometer la experiencia del usuario.
+
+3. *Facilidad para integrar TIC-80*  
+El archivo ejecutable generado por TIC-80 puede ser empaquetado como recurso en ambas herramientas, simplificando la adaptación del juego.
+
+4. *Flexibilidad para actualizaciones futuras*  
+El uso de herramientas nativas permite realizar actualizaciones específicas o integraciones futuras más fácilmente.
+
+== Consecuencias
+- El equipo debe asegurarse de cumplir con las políticas de publicación en Google Play Store y Apple App Store.
+- Requiere conocimientos básicos de Android Studio y Swift para configurar y mantener los wrappers.
+- Aumenta ligeramente la complejidad del proceso de desarrollo, pero asegura una experiencia de calidad para los usuarios finales.
+
+== ADR 5: Uso de la paleta de colores Sweetie 16 para un diseño retro
+
+== Contexto
+Ñamku busca tener una estética retro acorde con las limitaciones gráficas de TIC-80 y que a la vez sea visualmente atractiva para el público objetivo. Se evaluaron varias paletas de colores retro, como *PICO-8*, *Arne 16* y *Sweetie 16*.
+
+== Decisión
+Se decidió utilizar la paleta de colores *Sweetie 16* para el diseño gráfico del juego.
+
+== Razones
+1. *Colores vibrantes y armónicos*  
+La paleta *Sweetie 16* ofrece una gama de colores vibrantes que resalta la estética retro mientras mantiene un diseño moderno y atractivo.
+
+2. *Compatibilidad con TIC-80*  
+La paleta es compatible con las limitaciones técnicas de TIC-80, lo que facilita la implementación sin modificaciones adicionales.
+
+3. *Accesibilidad visual*  
+Los colores están diseñados para ser legibles y agradables, lo que mejora la experiencia del usuario.
+
+4. *Versatilidad*  
+La paleta incluye colores que se adaptan a diferentes elementos del juego, como fondos, personajes y elementos interactivos, sin perder la coherencia visual.
+
+== Consecuencias
+- El equipo de diseño debe adherirse a los colores definidos por *Sweetie 16* para mantener una estética consistente.
+- Se debe verificar la legibilidad y el contraste de los colores en todos los dispositivos soportados.
+
+== ADR 7: Uso de controles con mouse y teclado para maximizar la usabilidad
+
+== Contexto
+El juego Ñamku debe ofrecer una experiencia fluida tanto en dispositivos móviles como en escritorio. Es necesario definir un esquema de control que funcione en ambas plataformas y sea intuitivo para los usuarios.
+
+== Decisión
+Se decidió implementar controles basados en mouse y teclado. Los controles de mouse serán compatibles con pantallas táctiles en dispositivos móviles.
+
+== Razones
+1. *Compatibilidad multiplataforma*  
+El uso del mouse como entrada principal permite que el juego funcione con el *touch* en dispositivos móviles sin requerir cambios significativos en la lógica del juego.
+
+2. *Accesibilidad*  
+Los controles con teclado ofrecen una opción más precisa y cómoda para los jugadores en escritorio, mientras que los controles táctiles mantienen la usabilidad en móviles.
+
+3. *Simplicidad técnica*  
+Implementar un esquema de control unificado reduce la complejidad del desarrollo y mantenimiento del juego.
+
+4. *Experiencia fluida*  
+Ambos esquemas son intuitivos y fáciles de aprender, lo que mejora la experiencia de los usuarios en diferentes dispositivos.
+
+== Consecuencias
+- Los controles deben ser optimizados para evitar latencia en dispositivos móviles y escritorio.
+- Se debe realizar pruebas de usabilidad en ambas plataformas para garantizar una experiencia consistente.
+- La documentación del juego debe incluir una explicación clara de los controles para cada plataforma.
