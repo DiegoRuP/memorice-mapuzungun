@@ -13,6 +13,7 @@
 
     -- Funcion para cambiar de nivel
     function cambiarNivel(nuevoNivel)
+        musicStarted=false
         if niveles[nuevoNivel] then
             estado = nuevoNivel
             niveles[nuevoNivel].inicializar()  -- Llama a la función de inicialización del nivel
@@ -820,6 +821,10 @@
         end,
         actualizar = function()
             cls(4)
+            if not musicStarted then
+                music(1)  -- Reproduce la música en el track 0
+                musicStarted = true
+            end
             local start_x = 15  -- Posición inicial en el eje X
             local start_y = 25  -- Posición inicial en el eje Y
             local spacing = 24   -- Espaciado entre los sprites
