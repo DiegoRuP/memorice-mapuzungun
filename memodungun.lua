@@ -4,6 +4,16 @@
     -- Tabla para almacenar los niveles
     local niveles = {}
 
+    nivel_sprites = {
+        [1] = 111,
+        [2] = 79,
+        [3] = 95,
+        [4] = 62,
+        [5] = 78,
+        [6] = 94
+    }
+    
+
     totalScore = 0  -- Puntaje acumulado global
 
 
@@ -27,53 +37,55 @@
 
     ------------- Menu principal
     function dibujarMenu(nivel)
-        inicial_x = 70
-        inicial_y = 65 
+        inicial_x = 75 --70 ANTES
+        inicial_y = 60 --65 ANTES
         
-        print("Nivel seleccionado",inicial_x, inicial_y, 12)
-        puntos_x = inicial_x + 25
+        print("Nivel seleccionado", inicial_x, inicial_y, 12)
+        puntos_x = inicial_x + 35 -- 25 ANTES
         puntos_y = inicial_y + 10
-        spr(381, puntos_x, puntos_y, 0)
-        spr(381, puntos_x, puntos_y+8, 0, 1, 2)
         
+        -- Dibujar flechas izquierda y derecha
+        spr(381, puntos_x - 18, puntos_y + 8 , 0)
+        spr(381, puntos_x - 18, puntos_y + 16, 0, 1, 2)
+        spr(381, puntos_x + 40, puntos_y + 8, 0, 1, 1)
+        spr(381, puntos_x + 40, puntos_y + 16, 0, 1, 3) 
         
-        print(opcion_seleccionada, puntos_x+18, puntos_y, 12,false, 3)
-
-        spr(381, puntos_x+40, puntos_y, 0, 1, 1)
-        spr(381, puntos_x+40, puntos_y+8, 0, 1, 3) 
+        -- Dibujar el sprite del nivel seleccionado
+        local sprite = nivel_sprites[opcion_seleccionada]
+        if sprite then
+            spr(sprite, puntos_x, puntos_y, 0,4 ) -- Dibujar el sprite del nivel
+        else
+            print("Nivel " .. opcion_seleccionada, puntos_x, puntos_y, 12) -- En caso de error
+        end
         
-        rectb(inicial_x-13,inicial_y+38,120,20,14)
-        print("INICIAR", inicial_x-10, inicial_y+40,12, false, 3)
+        -- Dibujar botón de iniciar
+        rectb(inicial_x - 10, inicial_y + 48, 120, 20, 14)
+        print("INICIAR", inicial_x - 7, inicial_y + 50, 12, false, 3)
+        
+        -- Detectar clics en las flechas
         x, y, left, middle, right, scrollX, scrollY = mouse()
-        --print("Posicion del mouse: ("..x..", "..y..")", 10, 10, 12+t%60//20)
         if left and (time() - last_click_time > click_delay) then
-            last_click_time = time()  -- Actualizamos el tiempo del último clic
-            if (x >= 95 and x <= 103) and (y >= 75 and y <= 96) then
-                if left then
-                    opcion_seleccionada = opcion_seleccionada - 1
-                    if opcion_seleccionada == 0 then
-                        opcion_seleccionada = 4
-                    end
+            last_click_time = time()
+            if (x >= 92 and x <= 100) and (y >= 78 and y <= 94) then
+                opcion_seleccionada = opcion_seleccionada - 1
+                if opcion_seleccionada == 0 then
+                    opcion_seleccionada = 4
                 end
-            end
-
-            if (x >= 135 and x <= 143) and (y >= 75 and y <= 96) then
-                if left then
-                    opcion_seleccionada = opcion_seleccionada + 1
-                    if opcion_seleccionada == 5 then
-                        opcion_seleccionada = 1
-                    end
+            elseif (x >= 150 and x <= 158) and (y >= 78 and y <= 94) then
+                opcion_seleccionada = opcion_seleccionada + 1
+                if opcion_seleccionada == 5 then
+                    opcion_seleccionada = 1
                 end
             end
         end
-        
     end
+    
 
     function actualizarMenu(opcion_seleccionada)
         x, y, left, middle, right, scrollX, scrollY = mouse()
-        if (x > 57 and x < 176) and (y > 98 and y < 117) then
-            rect(inicial_x-13,inicial_y+38,120,20,14+t%60//10)
-            print("INICIAR", inicial_x-10, inicial_y+40,12, false, 3)
+        if (x > 65 and x < 184) and (y > 108 and y < 127) then
+            rect(inicial_x-10,inicial_y+48,120,20,14+t%60//10)
+            print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
             if left then
                 if opcion_seleccionada == 1 then
                     cambiarNivel("nivel1") 
@@ -90,8 +102,8 @@
                 end
             end
         else
-            rect(inicial_x-13,inicial_y+38,120,20,14)
-            print("INICIAR", inicial_x-10, inicial_y+40,12, false, 3)
+            rect(inicial_x-10,inicial_y+48,120,20,14)
+            print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
         end
         
     
