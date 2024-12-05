@@ -4,6 +4,9 @@
     -- Tabla para almacenar los niveles
     local niveles = {}
 
+    totalScore = 0  -- Puntaje acumulado global
+
+
     local last_click_time = 0  -- Para llevar un control del último clic
     local click_delay = 300  -- Número de ciclos entre clics para evitar que se registre demasiado rápido
     mx, my, left, middle, right = mouse()
@@ -307,10 +310,10 @@
         end
     end
     -- Posiciones relativas de los ojos desde la posición del personaje
-    eye_offset_x_left, eye_offset_y = 4, 5  -- Posición del ojo izquierdo
-    eye_offset_x_right = 14  -- Posición del ojo derecho
-    eye_distance_x = 2  -- Desplazamiento máximo horizontal de la pupila
-    eye_distance_y = 1  -- Desplazamiento máximo vertical de la pupila
+    eye_offset_x_left, eye_offset_y = 4, 5  
+    eye_offset_x_right = 14  
+    eye_distance_x = 2  
+    eye_distance_y = 1  
 
     -- Variables para el parpadeo
     local blink_timer = 0        -- Contador para el parpadeo
@@ -321,7 +324,7 @@
     -- Función para dibujar los ojos (abiertos o cerrados)
     function dibujarOjos(px, py, angle)
         if is_blinking then
-            -- Dibujar ojos cerrados (línea horizontal)
+            -- Dibujar ojos cerrados
             line(px-2 + eye_offset_x_left, py + eye_offset_y, px + eye_offset_x_left + 1, py + eye_offset_y, 3)
             line(px-2 + eye_offset_x_right, py + eye_offset_y, px + eye_offset_x_right + 1, py + eye_offset_y, 3)
 
@@ -420,7 +423,7 @@
         {spanish = "trece", mapudungun = "mari küla"},
         {spanish = "catorce", mapudungun = "mari meli"},
         {spanish = "quince", mapudungun = "mari kechu"},
-        {spanish = "dieciséis", mapudungun = "mari kayu"},
+        {spanish = "diecisEis", mapudungun = "mari kayu"},
         {spanish = "diecisiete", mapudungun = "mari regle"},
         {spanish = "dieciocho", mapudungun = "mari pura"},
         {spanish = "diecinueve", mapudungun = "mari aylla"},
@@ -492,21 +495,41 @@
         end
     end
 
-    -- Función para verificar si las cartas seleccionadas hacen un par
     function verificarPares()
         if firstCard and secondCard then
+            attempts = attempts + 1
             if firstCard.match == secondCard.text then
                 matchesFound = matchesFound + 1
-                -- Marcar las cartas como emparejadas
                 firstCard.matched = true
                 secondCard.matched = true
+                score = score + 10 + (streak * 5)  -- Puntaje local del nivel
+                totalScore = totalScore + 10 + (streak * 5)  -- Actualiza el puntaje global
+                streak = streak + 1
             else
                 firstCard.flipped = false
-                secondCard.flipped = false
+                secondCard.flipped = false      
+
+            -- Disminuir el puntaje por error
+            if score > 0 then
+                score = score - 2
+            end
+            if totalScore > 0 then
+                totalScore = totalScore - 2
+            end
+
+            -- Asegurarse de que los puntajes no sean negativos
+            if score < 0 then
+                score = 0
+            end
+            if totalScore < 0 then
+                totalScore = 0
+            end
+
+                streak = 0 -- Racha de aciertos
             end
             firstCard, secondCard = nil, nil
         end
-    end
+    end    
 
     -- Definición de las posiciones de las cartas
     loc = {
@@ -683,23 +706,37 @@
             memorama = {}
             local paresSeleccionados = seleccionarPares(months, 5)
             for _, par in ipairs(paresSeleccionados) do
-                table.insert(memorama, {text = par.spanish, match = par.mapudungun, flipped = false, matched = false})
-                table.insert(memorama, {text = par.mapudungun, match = par.spanish, flipped = false, matched = false})
+                table.insert(memorama, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})  -- Todas las cartas reveladas inicialmente
+                table.insert(memorama, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
             end
-            shuffle(memorama)       
+            shuffle(memorama)
             matchesFound = 0
             firstCard, secondCard = nil, nil
-            shuffle(memorama)
+
+            score = 0
+            streak = 0
+            attempts = 0
+            revealTimer = 120  -- 2 segundos de revelación
         end,
         actualizar = function()
             if not musicStarted then
                 music(0)  -- Reproduce la música en el track 0
                 musicStarted = true
             end
-            mx, my, left, middle, right = mouse()
-            angle = math.atan2(my - py, mx - px)
-            manejarClick(memorama)
-            verificarPares()
+    
+            if revealTimer > 0 then
+                revealTimer = revealTimer - 1
+                if revealTimer == 0 then
+                    for _, carta in ipairs(memorama) do
+                        carta.flipped = false  -- Oculta las cartas después del período de revelación
+                    end
+                end
+            else
+                mx, my, left, middle, right = mouse()
+                angle = math.atan2(my - py, mx - px)
+                manejarClick(memorama)  -- Permite al jugador interactuar
+                verificarPares()
+            end
         end,
         dibujar = function()
             cls(0)
@@ -709,14 +746,27 @@
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             dibujarMemorama(memorama)
+    
+            -- Mostrar puntaje acumulado 
+            print(totalScore, 115, 90, 12)
+            print(attempts, 115, 98, 12)
+
+            if streak > 1 then
+                print(streak, 115, 113, 12)
+            end
+    
             -- Mostrar mensaje si el jugador ha encontrado todos los pares
             if matchesFound == 5 then
                 cls(0)
-                music(-1) 
+                music(-1)
                 musicStarted = false
                 volverMenu()
                 siguienteNivel(1)
-                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("\nPuntaje final: " .. totalScore, 20, 120, 12)
+                print("Intentos: " .. attempts, 10, 20, 12)
+                print("Racha: " .. streak, 10, 30, 12)
+
             end
         end
     }
@@ -727,22 +777,38 @@
             memorama2 = {}
             local paresSeleccionados2 = seleccionarPares(dias_semana, 5)
             for _, par in ipairs(paresSeleccionados2) do
-                table.insert(memorama2, {text = par.spanish, match = par.mapudungun, flipped = false, matched = false})
-                table.insert(memorama2, {text = par.mapudungun, match = par.spanish, flipped = false, matched = false})
+                table.insert(memorama2, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                table.insert(memorama2, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
             end
             shuffle(memorama2)      
             matchesFound = 0
             firstCard, secondCard = nil, nil
+
+            score = 0  -- Reinicia el puntaje local
+            attempts = 0  -- Contador de intentos
+            streak = 0  -- Racha de aciertos consecutivos
+            revealTimer = 120  -- 2 segundos de revelación
+
         end,
         actualizar = function()
             if not musicStarted then
                 music(0)  -- Reproduce la música en el track 0
                 musicStarted = true
             end
-            mx, my, left, middle, right = mouse()
-            angle = math.atan2(my - py, mx - px)
-            manejarClick(memorama2)
-            verificarPares()
+            
+            if revealTimer > 0 then
+                revealTimer = revealTimer - 1
+                if revealTimer == 0 then
+                    for _, carta in ipairs(memorama2) do
+                        carta.flipped = false  -- Oculta las cartas después del período de revelación
+                    end
+                end
+            else
+                mx, my, left, middle, right = mouse()
+                angle = math.atan2(my - py, mx - px)
+                manejarClick(memorama2)  -- Permite al jugador interactuar
+                verificarPares()
+            end
         end,
         dibujar = function()
             cls()
@@ -751,18 +817,29 @@
             revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
-            -- Otros elementos del juego
             dibujarMemorama(memorama2)
-            -- Mostrar mensaje si el jugador ha encontrado todos los pares
+    
+            -- Mostrar puntaje acumulado 
+            print(totalScore, 115, 90, 12)
+            print(attempts, 115, 98, 12)
+
+            if streak > 1 then
+                print(streak, 115, 113, 12)
+            end
+    
             if matchesFound == 5 then
                 cls()
                 music(-1) 
                 musicStarted = false
                 siguienteNivel(2)
-                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("Puntaje total: " .. totalScore, 20, 120, 12)
+                print("Intentos: " .. attempts, 10, 20, 12)
+                print("Racha: " .. streak, 10, 30, 12)
             end
         end
     }
+    
 
     niveles["nivel3"] = {
         inicializar = function()
@@ -770,22 +847,38 @@
             memorama3 = {}
             local paresSeleccionados3 = seleccionarPares(colors, 5)
             for _, par in ipairs(paresSeleccionados3) do
-                table.insert(memorama3, {text = par.spanish, match = par.mapudungun, flipped = false, matched = false})
-                table.insert(memorama3, {text = par.mapudungun, match = par.spanish, flipped = false, matched = false})
+                table.insert(memorama3, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                table.insert(memorama3, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
             end
             shuffle(memorama3)      
             matchesFound = 0
             firstCard, secondCard = nil, nil
+
+            score = 0  -- Reinicia el puntaje local
+            attempts = 0  -- Contador de intentos
+            streak = 0  -- Racha de aciertos consecutivos
+            revealTimer = 120  -- 2 segundos de revelación
+
         end,
         actualizar = function()
             if not musicStarted then
                 music(0)  -- Reproduce la música en el track 0
                 musicStarted = true
             end
-            mx, my, left, middle, right = mouse()
-            angle = math.atan2(my - py, mx - px)
-            manejarClick(memorama3)
-            verificarPares()
+
+            if revealTimer > 0 then
+                revealTimer = revealTimer - 1
+                if revealTimer == 0 then
+                    for _, carta in ipairs(memorama3) do
+                        carta.flipped = false  -- Oculta las cartas después del período de revelación
+                    end
+                end
+            else
+                mx, my, left, middle, right = mouse()
+                angle = math.atan2(my - py, mx - px)
+                manejarClick(memorama3)  -- Permite al jugador interactuar
+                verificarPares()
+            end
         end,
         dibujar = function()
             cls(0)
@@ -796,13 +889,24 @@
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
             dibujarMemorama(memorama3)
-            -- Mostrar mensaje si el jugador ha encontrado todos los pares
+            
+            -- Mostrar puntaje acumulado 
+            print(totalScore, 115, 90, 12)
+            print(attempts, 115, 98, 12)
+
+            if streak > 1 then
+                print(streak, 115, 113, 12)
+            end
+    
             if matchesFound == 5 then
-                cls(0)
+                cls()
                 music(-1) 
                 musicStarted = false
                 siguienteNivel(3)
-                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("Puntaje total: " .. totalScore, 20, 120, 12)
+                print("Intentos: " .. attempts, 10, 20, 12)
+                print("Racha: " .. streak, 10, 30, 12)
             end
         end
     }
@@ -813,22 +917,38 @@
             memorama4 = {}
             local paresSeleccionados4 = seleccionarPares(numbers, 5)
             for _, par in ipairs(paresSeleccionados4) do
-                table.insert(memorama4, {text = par.spanish, match = par.mapudungun, flipped = false, matched = false})
-                table.insert(memorama4, {text = par.mapudungun, match = par.spanish, flipped = false, matched = false})
+                table.insert(memorama4, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                table.insert(memorama4, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
             end
             shuffle(memorama4)      
             matchesFound = 0
             firstCard, secondCard = nil, nil
+
+            score = 0  -- Reinicia el puntaje local
+            attempts = 0  -- Contador de intentos
+            streak = 0  -- Racha de aciertos consecutivos
+            revealTimer = 120  -- 2 segundos de revelación
+
         end,
         actualizar = function()
             if not musicStarted then
                 music(0)  -- Reproduce la música en el track 0
                 musicStarted = true
             end
-            mx, my, left, middle, right = mouse()
-            angle = math.atan2(my - py, mx - px)
-            manejarClick(memorama4)
-            verificarPares()
+            
+            if revealTimer > 0 then
+                revealTimer = revealTimer - 1
+                if revealTimer == 0 then
+                    for _, carta in ipairs(memorama4) do
+                        carta.flipped = false  -- Oculta las cartas después del período de revelación
+                    end
+                end
+            else
+                mx, my, left, middle, right = mouse()
+                angle = math.atan2(my - py, mx - px)
+                manejarClick(memorama4)  -- Permite al jugador interactuar
+                verificarPares()
+            end
         end,
         dibujar = function()
             cls(0)
@@ -839,13 +959,26 @@
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
             dibujarMemorama(memorama4)
+
+            -- Mostrar puntaje acumulado 
+            print(totalScore, 115, 90, 12)
+            print(attempts, 115, 98, 12)
+
+            if streak > 1 then
+                print(streak, 115, 113, 12)
+            end
+    
             -- Mostrar mensaje si el jugador ha encontrado todos los pares
             if matchesFound == 5 then
                 cls(0)
                 music(-1) 
                 musicStarted = false
                 siguienteNivel(4)
-                print("Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                print("Puntaje total: " .. totalScore, 20, 120, 12)
+                print("Intentos: " .. attempts, 10, 20, 12)
+                print("Racha: " .. streak, 10, 30, 12)
+                print("Gracias por jugar", 20, 130, 12)
             end
         end
     }
@@ -925,6 +1058,7 @@
                 music(1)  -- Reproduce la música en el track 0
                 musicStarted = true
             end
+            totalScore = 0 -- Puntaje global vacío
             local start_x = 60  -- Posición inicial en el eje X
             local start_y = 10  -- Posición inicial en el eje Y
             local spacing = 14   -- Espaciado entre los sprites
