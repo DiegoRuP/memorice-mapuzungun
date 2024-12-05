@@ -25,7 +25,7 @@
     ------------- Menu principal
     function dibujarMenu(nivel)
         inicial_x = 70
-        inicial_y = 80
+        inicial_y = 65 
         
         print("Nivel seleccionado",inicial_x, inicial_y, 12)
         puntos_x = inicial_x + 25
@@ -39,13 +39,13 @@
         spr(381, puntos_x+40, puntos_y, 0, 1, 1)
         spr(381, puntos_x+40, puntos_y+8, 0, 1, 3) 
         
-        rectb(inicial_x-13,inicial_y+28,120,20,14)
-        print("INICIAR", inicial_x-10, inicial_y+30,12, false, 3)
+        rectb(inicial_x-13,inicial_y+38,120,20,14)
+        print("INICIAR", inicial_x-10, inicial_y+40,12, false, 3)
         x, y, left, middle, right, scrollX, scrollY = mouse()
         --print("Posicion del mouse: ("..x..", "..y..")", 10, 10, 12+t%60//20)
         if left and (time() - last_click_time > click_delay) then
             last_click_time = time()  -- Actualizamos el tiempo del último clic
-            if (x >= 95 and x <= 103) and (y >= 90 and y <= 106) then
+            if (x >= 95 and x <= 103) and (y >= 75 and y <= 96) then
                 if left then
                     opcion_seleccionada = opcion_seleccionada - 1
                     if opcion_seleccionada == 0 then
@@ -54,7 +54,7 @@
                 end
             end
 
-            if (x >= 135 and x <= 143) and (y >= 90 and y <= 106) then
+            if (x >= 135 and x <= 143) and (y >= 75 and y <= 96) then
                 if left then
                     opcion_seleccionada = opcion_seleccionada + 1
                     if opcion_seleccionada == 5 then
@@ -68,9 +68,9 @@
 
     function actualizarMenu(opcion_seleccionada)
         x, y, left, middle, right, scrollX, scrollY = mouse()
-        if (x > 57 and x < 176) and (y > 108 and y < 127) then
-            rect(inicial_x-13,inicial_y+28,120,20,14+t%60//10)
-            print("INICIAR", inicial_x-10, inicial_y+30,12, false, 3)
+        if (x > 57 and x < 176) and (y > 98 and y < 117) then
+            rect(inicial_x-13,inicial_y+38,120,20,14+t%60//10)
+            print("INICIAR", inicial_x-10, inicial_y+40,12, false, 3)
             if left then
                 if opcion_seleccionada == 1 then
                     cambiarNivel("nivel1") 
@@ -87,8 +87,8 @@
                 end
             end
         else
-            rect(inicial_x-13,inicial_y+28,120,20,14)
-            print("INICIAR", inicial_x-10, inicial_y+30,12, false, 3)
+            rect(inicial_x-13,inicial_y+38,120,20,14)
+            print("INICIAR", inicial_x-10, inicial_y+40,12, false, 3)
         end
         
     
@@ -173,15 +173,46 @@
     function volverMenu()
         
         mx, my, left, middle, right = mouse()
-        if (mx>=180 and mx < 205) and (my>=1 and my <=9) then
+        if (mx>=225 and mx < 235) and (my>=5 and my <=14) then
             if left then
                 cambiarNivel("menu")
             end
         end
-        --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
-        rect(180,2,26,8,3)       
-        print("MENU", 181, 3,12+t%60//20)
+        
+        rect(225,5,10,10,14+t%60//10)      
+
+        spr(47, 226, 6)  
     end
+
+    function volverNivel()
+        
+        mx, my, left, middle, right = mouse()
+        if (mx>=225 and mx < 235) and (my>=5 and my <=14) then
+            if left then
+                cambiarNivel("nivel1")
+            end
+        end
+        
+        rect(225,5,10,10,14+t%60//10)      
+
+        spr(175, 226, 6)  
+    end
+
+    function revisarGlosario()
+        
+        mx, my, left, middle, right = mouse()
+        if (mx>=5 and mx < 15) and (my>=5 and my <=14) then
+            if left then
+                cambiarNivel("glosario")
+            end
+        end
+        
+        rect(5,5,10,10,14+t%60//10)      
+
+        spr(63, 6, 6)  
+    end
+
+    
 
     function siguienteNivel(nivelActual)
         mx, my, left, middle, right = mouse()
@@ -293,8 +324,10 @@
             -- Dibujar ojos cerrados (línea horizontal)
             line(px-2 + eye_offset_x_left, py + eye_offset_y, px + eye_offset_x_left + 1, py + eye_offset_y, 3)
             line(px-2 + eye_offset_x_right, py + eye_offset_y, px + eye_offset_x_right + 1, py + eye_offset_y, 3)
-            -- line(px+1 + eye_offset_x_left, py-1 + eye_offset_y, px, py + eye_offset_y, 3)
-            -- line(px+1 + eye_offset_x_right, py-1 + eye_offset_y, px, py + eye_offset_y, 3)
+
+            line(px-3 + eye_offset_x_left, py + eye_offset_y - 1, px + eye_offset_x_left + 2, py + eye_offset_y - 1, 3)
+            line(px-3 + eye_offset_x_right, py + eye_offset_y - 1, px + eye_offset_x_right + 2, py + eye_offset_y - 1, 3)
+
         else
             -- Calcular el desplazamiento de las pupilas en la dirección del cursor
             local eye_x_offset = math.cos(angle) * eye_distance_x
@@ -672,6 +705,7 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
+            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             dibujarMemorama(memorama)
@@ -714,6 +748,7 @@
             cls()
             map(0, 0, 30, 17) 
             volverMenu()
+            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -731,6 +766,7 @@
 
     niveles["nivel3"] = {
         inicializar = function()
+            changeColors(3)
             memorama3 = {}
             local paresSeleccionados3 = seleccionarPares(colors, 5)
             for _, par in ipairs(paresSeleccionados3) do
@@ -755,6 +791,7 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
+            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -797,6 +834,7 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
+            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -812,37 +850,99 @@
         end
     }
 
+    niveles["glosario"] = {
+        inicializar = function()
+            -- Puedes agregar aquí cualquier inicialización necesaria para el glosario
+        end,
+        actualizar = function()
+            if not musicStarted then
+                music(0)  -- Reproduce la música en el track 0
+                musicStarted = true
+            end
+        end,
+        dibujar = function()
+            cls(0)  -- Limpia la pantalla con color de fondo 0
+            map(0, 85, 30, 100)  -- Dibujar el mapa, si lo necesitas
+    
+            -- Mostrar el mensaje "Hola Mundo"
+            print("Castellano", 30, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+            print("Mapuzungun", 130, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+
+            volverNivel()  -- Llama la función para dibujar el botón de "volver al nivel"
+        end
+    }
+
+    niveles["creditos"] = {
+        inicializar = function()
+            -- Puedes agregar aquí cualquier inicialización necesaria para el glosario
+        end,
+        actualizar = function()
+            if not musicStarted then
+                music(0)  -- Reproduce la música en el track 0
+                musicStarted = true
+            end
+        end,
+        dibujar = function()
+            cls(0)  -- Limpia la pantalla con color de fondo 0
+            map(0, 68, 30, 84)  -- Dibujar el mapa, si lo necesitas
+    
+            -- Mostrar el mensaje "Hola Mundo"
+            print("Hola mi gente", 60, 60, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+            
+            volverMenu()  -- Llama la función para dibujar el botón de "volver al menú"
+        end
+    }
+
+    niveles["lenguaje"] = {
+        inicializar = function()
+            -- Puedes agregar aquí cualquier inicialización necesaria para el glosario
+        end,
+        actualizar = function()
+            if not musicStarted then
+                music(0)  -- Reproduce la música en el track 0
+                musicStarted = true
+            end
+        end,
+        dibujar = function()
+            cls(0)  -- Limpia la pantalla con color de fondo 0
+            map(0, 102, 30, 118)  -- Dibujar el mapa, si lo necesitas
+    
+            -- Mostrar el mensaje "Hola Mundo"
+            print("Lenguaje?", 60, 60, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+            
+            volverMenu()  -- Llama la función para dibujar el botón de "volver al menú"
+        end
+    }
+    
     niveles["menu"] = {
         inicializar = function()      
             opcion_seleccionada = 1
-            
-    
-            
         end,
         actualizar = function()
             cls(4)
+            map(0, 51, 30, 68)
             if not musicStarted then
                 music(1)  -- Reproduce la música en el track 0
                 musicStarted = true
             end
-            local start_x = 15  -- Posición inicial en el eje X
-            local start_y = 25  -- Posición inicial en el eje Y
-            local spacing = 24   -- Espaciado entre los sprites
+            local start_x = 60  -- Posición inicial en el eje X
+            local start_y = 10  -- Posición inicial en el eje Y
+            local spacing = 14   -- Espaciado entre los sprites
 
             -- Dibujar los sprites del 84 al 92
             for i = 84, 92 do
-                spr(i, start_x, start_y,0,3)  -- Dibuja el sprite en la posición (start_x, start_y)
+                spr(i, start_x, start_y,0,2)  -- Dibuja el sprite en la posición (start_x, start_y)
                 start_x = start_x + spacing  -- Mueve la posición X para el siguiente sprite
             end
-            start_x = 15
+            start_x = 60
             for i = 100, 108 do
-                spr(i, start_x, start_y+24,0,3)  -- Dibuja el sprite en la posición (start_x, start_y)
+                spr(i, start_x, start_y+14,0,2)  -- Dibuja el sprite en la posición (start_x, start_y)
                 start_x = start_x + spacing  -- Mueve la posición X para el siguiente sprite
             end
-            spr(116, 20,71, 0)
-            spr(116, 220,71, 0,1,1)
+            spr(116, 20,45, 0)
+            spr(116, 220,45, 0,1,1)
             start_x = 28
-            start_y = 71
+            start_y = 45
             for i = 1, 24  do
            		spr(117,start_x, start_y,0)
                 start_x = start_x + 8 	
