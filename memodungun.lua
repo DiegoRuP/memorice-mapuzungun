@@ -1,18 +1,19 @@
     -- Estado del juego
-    local estado = "intro"  -- Estados posibles: "menu", "intro", "nivel1", "nivel2", et
+    local estado = "lenguaje"  -- Estados posibles: "menu", "intro", "nivel1", "nivel2", et
 
     -- Tabla para almacenar los niveles
     local niveles = {}
 
     nivel_sprites = {
         [1] = 111,
-        [2] = 79,
+        [2] = 62,
         [3] = 95,
-        [4] = 62,
-        [5] = 78,
-        [6] = 94
+        [4] = 79,
+        [5] = 78, 
+        [6] = 94  
     }
     
+    lang_flag = false
 
     totalScore = 0  -- Puntaje acumulado global
 
@@ -37,11 +38,15 @@
 
     ------------- Menu principal
     function dibujarMenu(nivel)
-        inicial_x = 75 --70 ANTES
-        inicial_y = 60 --65 ANTES
+        inicial_x = 75 
+        inicial_y = 60 
         
-        print("Nivel seleccionado", inicial_x, inicial_y, 12)
-        puntos_x = inicial_x + 35 -- 25 ANTES
+        if not lang_flag then
+            print("Select a level, friend", inicial_x, inicial_y, 12)
+        else
+            print("Selecciona un nivel", inicial_x, inicial_y, 12)
+        end
+        puntos_x = inicial_x + 35 
         puntos_y = inicial_y + 10
         
         -- Dibujar flechas izquierda y derecha
@@ -60,7 +65,11 @@
         
         -- Dibujar botón de iniciar
         rectb(inicial_x - 10, inicial_y + 48, 120, 20, 14)
-        print("INICIAR", inicial_x - 7, inicial_y + 50, 12, false, 3)
+        if not lang_flag then
+            print("START :)", inicial_x - 7, inicial_y + 50, 12, false, 3)
+        else
+            print("INICIAR", inicial_x - 7, inicial_y + 50, 12, false, 3)
+        end
         
         -- Detectar clics en las flechas
         x, y, left, middle, right, scrollX, scrollY = mouse()
@@ -69,11 +78,11 @@
             if (x >= 92 and x <= 100) and (y >= 78 and y <= 94) then
                 opcion_seleccionada = opcion_seleccionada - 1
                 if opcion_seleccionada == 0 then
-                    opcion_seleccionada = 4
+                    opcion_seleccionada = 6
                 end
             elseif (x >= 150 and x <= 158) and (y >= 78 and y <= 94) then
                 opcion_seleccionada = opcion_seleccionada + 1
-                if opcion_seleccionada == 5 then
+                if opcion_seleccionada == 7 then
                     opcion_seleccionada = 1
                 end
             end
@@ -85,7 +94,11 @@
         x, y, left, middle, right, scrollX, scrollY = mouse()
         if (x > 65 and x < 184) and (y > 108 and y < 127) then
             rect(inicial_x-10,inicial_y+48,120,20,14+t%60//10)
-            print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
+            if not lang_flag then
+                print("START :)", inicial_x-7, inicial_y+50,12, false, 3)
+            else
+                print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
+            end 
             if left then
                 if opcion_seleccionada == 1 then
                     cambiarNivel("nivel1") 
@@ -95,23 +108,29 @@
                     cambiarNivel("nivel3")
                 elseif opcion_seleccionada == 4 then
                     cambiarNivel("nivel4")
+                elseif opcion_seleccionada == 5 then
+                    cambiarNivel("nivel5")
+                elseif opcion_seleccionada == 6 then
+                    cambiarNivel("nivel6")
                 elseif opcion_seleccionada == 0 then
                     cambiarNivel("intro")
-                elseif opcion_seleccionada == 5 then
+                elseif opcion_seleccionada == 7 then
                     cambiarNivel("creditos")
                 end
             end
         else
             rect(inicial_x-10,inicial_y+48,120,20,14)
-            print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
+            if not lang_flag then
+                print("START :)", inicial_x-7, inicial_y+50,12, false, 3)
+            else
+                print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
+            end
         end
         
     
 
     end
     ------------ Menu principal
-
-
 
     -- Variables globales para el ancho y alto de las cartas
     w = 66
@@ -172,6 +191,53 @@
         "vienesZZZ\""
     }
 
+    local history = {
+        "in a time of darkness a.",
+        "young warrior named KallfUB",
+        "finds himself trapped in chaosZ",
+        "",
+        "an attack on his village forces him to",
+        "fleeB getting lost within that",
+        "deep forestZ",
+        "",
+        "but in the darkness he finds a",
+        "sanctuaryB a cave<",
+        "",
+        "inside, an old woman awaits him.",
+        "The Machi, healer and protector",
+        "of spiritsZ",
+        "",
+        "the portal has been openedB",
+        "she saysZ",
+        "",
+        "your mission is written in the.",
+        "starsZ Kallfü receives a.",
+        "amulet, the PUllU,",
+        "a mystical artifact with a",
+        "purposeZ",
+        "",
+        "through the portal, you will face",
+        "trials that will challenge your mind",
+        "and spiritZ",
+        "",
+        "the pillars of your culture must",
+        "be rebornZ",
+        "",
+        "numbersZZZ",
+        "",
+        "colorsZZZ",
+        "",
+        "cycles of timeZZZ",
+        "",
+        "and when all seems lostZZZ",
+        "",
+        "you will remember who you areZZZ",
+        "",
+        "and where",
+        "",
+        "you come fromZZZ\""
+    }
+
     local linea_actual = 1
     local char_index = 0
     local tiempo = 0
@@ -204,7 +270,7 @@
         mx, my, left, middle, right = mouse()
         if (mx>=225 and mx < 235) and (my>=5 and my <=14) then
             if left then
-                cambiarNivel("nivel1")
+                cambiarNivel("nivel1") --FALTA IMPLEMENTAR
             end
         end
         
@@ -212,6 +278,34 @@
 
         spr(175, 226, 6)  
     end
+
+    function seleccionarES()
+        
+        mx, my, left, middle, right = mouse()
+        if (mx>=225 and mx < 235) and (my>=60 and my <=68) then
+            if left then
+                lang_flag = true
+                cambiarNivel("intro")
+            end
+        end
+        
+        rect(222, 60, 16, 16, 0)
+    end
+
+    function seleccionarEN()
+        
+        mx, my, left, middle, right = mouse()
+        if (mx>=225 and mx < 235) and (my>=80 and my <=84) then
+            if left then
+                lang_flag = false
+                cambiarNivel("intro")
+            end
+        end
+        
+        rect(222, 80, 16, 16, 0)
+    end
+
+   
 
     function revisarGlosario()
         
@@ -227,9 +321,14 @@
         spr(63, 6, 6)  
     end
 
-    
-
     function siguienteNivel(nivelActual)
+
+        if not musicStarted then
+            music(3)  -- Reproduce la música en el track 0
+            musicStarted = true
+        end
+
+
         mx, my, left, middle, right = mouse()
         --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
         rect(115,66,27,35,3+t%60//20)    
@@ -245,6 +344,10 @@
                 elseif nivelActual == 3 then
                     cambiarNivel("nivel4")
                 elseif nivelActual == 4 then
+                    cambiarNivel("nivel5")
+                elseif nivelActual == 5 then
+                    cambiarNivel("nivel6")
+                elseif nivelActual == 6 then
                     cambiarNivel("creditos")
                 end
             end
@@ -257,7 +360,12 @@
         map(0, 119, 30, 135)
         rect(180,40,37,8,14+t%60//10)
        
-        print("SALTAR", 181, 41,12, false, 1)
+        if not lang_flag then
+            print("SKIP", 181, 41,12, false, 1)
+        else
+            print("SALTAR", 181, 41,12, false, 1)
+        end
+
         mx, my, left, middle, right = mouse()
         if (mx>=180 and mx < 215) and (my>=40 and my <=50) then
             if left then
@@ -267,6 +375,10 @@
         --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
         -- Incrementa el contador de tiempo
         tiempo = tiempo + 1
+
+        if not lang_flag then
+            historia = history
+        end
 
         -- Controla la velocidad de escritura
         if tiempo % velocidad == 0 then
@@ -378,72 +490,95 @@
         niveles[estado].dibujar()
     end
 
-    -- Definicion de los meses
     months = {
-        {spanish = "enero", mapudungun = "eneru"},
-        {spanish = "febrero", mapudungun = "fewreru"},
-        {spanish = "marzo", mapudungun = "marsu"},
-        {spanish = "abril", mapudungun = "afril"},
-        {spanish = "mayo", mapudungun = "mayu"},
-        {spanish = "junio", mapudungun = "kuniu"},
-        {spanish = "julio", mapudungun = "kuliu"},
-        {spanish = "agosto", mapudungun = "akostu"},
-        {spanish = "septiembre", mapudungun = "setiempUre"},
-        {spanish = "octubre", mapudungun = "oktufUre"},
-        {spanish = "noviembre", mapudungun = "nofiempUre"},
-        {spanish = "diciembre", mapudungun = "disempUre"}
+        {spanish = "enero", mapudungun = "eneru", english = "january"},
+        {spanish = "febrero", mapudungun = "fewreru", english = "february"},
+        {spanish = "marzo", mapudungun = "marsu", english = "march"},
+        {spanish = "abril", mapudungun = "afril", english = "april"},
+        {spanish = "mayo", mapudungun = "mayu", english = "may"},
+        {spanish = "junio", mapudungun = "kuniu", english = "june"},
+        {spanish = "julio", mapudungun = "kuliu", english = "july"},
+        {spanish = "agosto", mapudungun = "akostu", english = "august"},
+        {spanish = "septiembre", mapudungun = "setiempUre", english = "september"},
+        {spanish = "octubre", mapudungun = "oktufUre", english = "october"},
+        {spanish = "noviembre", mapudungun = "nofiempUre", english = "november"},
+        {spanish = "diciembre", mapudungun = "disempUre", english = "december"}
     }
 
     dias_semana = {
-        {spanish = "lunes", mapudungun = "pANi"},
-        {spanish = "martes", mapudungun = "afilUl"},
-        {spanish = "miercoles", mapudungun = "wenU"},
-        {spanish = "jueves", mapudungun = "trengUn"},
-        {spanish = "viernes", mapudungun = "antU"},
-        {spanish = "sabado", mapudungun = "NamUn"},
-        {spanish = "domingo", mapudungun = "kUnUn"}
+        {spanish = "lunes", mapudungun = "pANi", english = "monday"},
+        {spanish = "martes", mapudungun = "afilUl", english = "tuesday"},
+        {spanish = "miercoles", mapudungun = "wenU", english = "wednesday"},
+        {spanish = "jueves", mapudungun = "trengUn", english = "thursday"},
+        {spanish = "viernes", mapudungun = "antU", english = "friday"},
+        {spanish = "sabado", mapudungun = "NamUn", english = "saturday"},
+        {spanish = "domingo", mapudungun = "kUnUn", english = "sunday"}
     }
 
     colors = {
-        {spanish = "rojo", mapudungun = "kelU"},
-        {spanish = "negro", mapudungun = "kurU"},
-        {spanish = "morado", mapudungun = "koNoll"},
-        {spanish = "verde", mapudungun = "karU"},
-        {spanish = "gris", mapudungun = "kadU"},
-        {spanish = "azul", mapudungun = "kallfU"},
-        {spanish = "amarillo", mapudungun = "lig"},
-        {spanish = "blanco", mapudungun = "kollU"},
-        {spanish = "marron", mapudungun = "kelUchod"},
-        {spanish = "naranja", mapudungun = "chod"},
-        {spanish = "rosado", mapudungun = "rosaw"},
-        {spanish = "beige", mapudungun = "kollU"}
+        {spanish = "rojo", mapudungun = "kelU", english = "red"},
+        {spanish = "negro", mapudungun = "kurU", english = "black"},
+        {spanish = "morado", mapudungun = "koNoll", english = "purple"},
+        {spanish = "verde", mapudungun = "karU", english = "green"},
+        {spanish = "gris", mapudungun = "kadU", english = "gray"},
+        {spanish = "azul", mapudungun = "kallfU", english = "blue"},
+        {spanish = "amarillo", mapudungun = "lig", english = "yellow"},
+        {spanish = "blanco", mapudungun = "kollU", english = "white"},
+        {spanish = "marron", mapudungun = "kelUchod", english = "brown"},
+        {spanish = "naranja", mapudungun = "chod", english = "orange"},
+        {spanish = "rosado", mapudungun = "rosaw", english = "pink"},
+        {spanish = "beige", mapudungun = "kollU", english = "beige"}
     }
 
     numbers = {
-        {spanish = "uno", mapudungun = "kiNe"},
-        {spanish = "dos", mapudungun = "epu"},
-        {spanish = "tres", mapudungun = "kUla"},
-        {spanish = "cuatro", mapudungun = "meli"},
-        {spanish = "cinco", mapudungun = "kechu"},
-        {spanish = "seis", mapudungun = "kayu"},
-        {spanish = "siete", mapudungun = "regle"},
-        {spanish = "ocho", mapudungun = "pura"},
-        {spanish = "nueve", mapudungun = "aylla"},
-        {spanish = "diez", mapudungun = "mari"},
-        {spanish = "once", mapudungun = "mari kiNe"},
-        {spanish = "doce", mapudungun = "mari epu"},
-        {spanish = "trece", mapudungun = "mari küla"},
-        {spanish = "catorce", mapudungun = "mari meli"},
-        {spanish = "quince", mapudungun = "mari kechu"},
-        {spanish = "diecisEis", mapudungun = "mari kayu"},
-        {spanish = "diecisiete", mapudungun = "mari regle"},
-        {spanish = "dieciocho", mapudungun = "mari pura"},
-        {spanish = "diecinueve", mapudungun = "mari aylla"},
-        {spanish = "veinte", mapudungun = "epu mari"}
+        {spanish = "uno", mapudungun = "kiNe", english = "one"},
+        {spanish = "dos", mapudungun = "epu", english = "two"},
+        {spanish = "tres", mapudungun = "kUla", english = "three"},
+        {spanish = "cuatro", mapudungun = "meli", english = "four"},
+        {spanish = "cinco", mapudungun = "kechu", english = "five"},
+        {spanish = "seis", mapudungun = "kayu", english = "six"},
+        {spanish = "siete", mapudungun = "regle", english = "seven"},
+        {spanish = "ocho", mapudungun = "pura", english = "eight"},
+        {spanish = "nueve", mapudungun = "aylla", english = "nine"},
+        {spanish = "diez", mapudungun = "mari", english = "ten"},
+        {spanish = "once", mapudungun = "mari kiNe", english = "eleven"},
+        {spanish = "doce", mapudungun = "mari epu", english = "twelve"},
+        {spanish = "trece", mapudungun = "mari küla", english = "thirteen"},
+        {spanish = "catorce", mapudungun = "mari meli", english = "fourteen"},
+        {spanish = "quince", mapudungun = "mari kechu", english = "fifteen"},
+        {spanish = "diecisEis", mapudungun = "mari kayu", english = "sixteen"},
+        {spanish = "diecisiete", mapudungun = "mari regle", english = "seventeen"},
+        {spanish = "dieciocho", mapudungun = "mari pura", english = "eighteen"},
+        {spanish = "diecinueve", mapudungun = "mari aylla", english = "nineteen"},
+        {spanish = "veinte", mapudungun = "epu mari", english = "twenty"}
     }
     
+    body = {
+        {spanish = "manos", mapudungun = "kuwU", english = "hands"},
+        {spanish = "ojos", mapudungun = "nge", english = "eyes"},
+        {spanish = "brazos", mapudungun = "lipang", english = "arms"},
+        {spanish = "piernas", mapudungun = "chang", english = "legs"},
+        {spanish = "cabeza", mapudungun = "lonco", english = "head"},
+        {spanish = "oreja", mapudungun = "pilun", english = "ear"},
+        {spanish = "nariz", mapudungun = "yu", english = "nose"},
+        {spanish = "boca", mapudungun = "wUn", english = "mouth"},
+        {spanish = "estomago", mapudungun = "guata", english = "stomach"}
+    }
+    
+    words = {
+        {spanish = "reunion", mapudungun = "cahuin", english = "meeting"},
+        {spanish = "gente", mapudungun = "che", english = "people"},
+        {spanish = "novio", mapudungun = "pololo", english = "boyfriend"},
+        {spanish = "novia", mapudungun = "polola", english = "girlfriend"},
+        {spanish = "tierra", mapudungun = "mapu", english = "land"},
+        {spanish = "hola", mapudungun = "mari mari", english = "hello"},
+        {spanish = "gracias", mapudungun = "chaltumay", english = "thank you"},
+        {spanish = "despedida", mapudungun = "pewkallal", english = "farewell"},
+        {spanish = "te quiero", mapudungun = "poyenieyu", english = "I love you"},
+        {spanish = "por favor", mapudungun = "fvreneaen", english = "please"}
+    }
 
-    -- Función para seleccionar 5 pares únicos al azar
+    
     function seleccionarPares(meses, num_pares)
         local pares = {}
         local indices_usados = {}
@@ -718,8 +853,13 @@
             memorama = {}
             local paresSeleccionados = seleccionarPares(months, 5)
             for _, par in ipairs(paresSeleccionados) do
-                table.insert(memorama, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})  -- Todas las cartas reveladas inicialmente
-                table.insert(memorama, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                if lang_flag then
+                    table.insert(memorama, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                else
+                    table.insert(memorama, {text = par.english, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama, {text = par.mapudungun, match = par.english, flipped = true, matched = false})
+                end
             end
             shuffle(memorama)
             matchesFound = 0
@@ -728,7 +868,8 @@
             score = 0
             streak = 0
             attempts = 0
-            revealTimer = 120  -- 2 segundos de revelación
+            revealTimer = 120  
+
         end,
         actualizar = function()
             if not musicStarted then
@@ -774,10 +915,18 @@
                 musicStarted = false
                 volverMenu()
                 siguienteNivel(1)
-                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                print("\nPuntaje final: " .. totalScore, 20, 120, 12)
-                print("Intentos: " .. attempts, 10, 20, 12)
-                print("Racha: " .. streak, 10, 30, 12)
+
+                if not lang_flag then 
+                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
+                else
+                    print("You Win! You found all the pairs", 20, 110, 12)
+                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("Attempts: " .. attempts, 10, 20, 12)
+                    print("Streak: " .. streak, 10, 30, 12)
+                end
 
             end
         end
@@ -789,8 +938,13 @@
             memorama2 = {}
             local paresSeleccionados2 = seleccionarPares(dias_semana, 5)
             for _, par in ipairs(paresSeleccionados2) do
-                table.insert(memorama2, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
-                table.insert(memorama2, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                if lang_flag then
+                    table.insert(memorama2, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama2, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                else
+                    table.insert(memorama2, {text = par.english, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama2, {text = par.mapudungun, match = par.english, flipped = true, matched = false})
+                end
             end
             shuffle(memorama2)      
             matchesFound = 0
@@ -844,10 +998,18 @@
                 music(-1) 
                 musicStarted = false
                 siguienteNivel(2)
-                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                print("Puntaje total: " .. totalScore, 20, 120, 12)
-                print("Intentos: " .. attempts, 10, 20, 12)
-                print("Racha: " .. streak, 10, 30, 12)
+
+                if not lang_flag then 
+                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
+                else
+                    print("You Win! You found all the pairs", 20, 110, 12)
+                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("Attempts: " .. attempts, 10, 20, 12)
+                    print("Streak: " .. streak, 10, 30, 12)
+                end
             end
         end
     }
@@ -859,8 +1021,13 @@
             memorama3 = {}
             local paresSeleccionados3 = seleccionarPares(colors, 5)
             for _, par in ipairs(paresSeleccionados3) do
-                table.insert(memorama3, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
-                table.insert(memorama3, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                if lang_flag then
+                    table.insert(memorama3, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama3, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                else
+                    table.insert(memorama3, {text = par.english, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama3, {text = par.mapudungun, match = par.english, flipped = true, matched = false})
+                end
             end
             shuffle(memorama3)      
             matchesFound = 0
@@ -915,10 +1082,18 @@
                 music(-1) 
                 musicStarted = false
                 siguienteNivel(3)
-                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                print("Puntaje total: " .. totalScore, 20, 120, 12)
-                print("Intentos: " .. attempts, 10, 20, 12)
-                print("Racha: " .. streak, 10, 30, 12)
+
+                if not lang_flag then 
+                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
+                else
+                    print("You Win! You found all the pairs", 20, 110, 12)
+                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("Attempts: " .. attempts, 10, 20, 12)
+                    print("Streak: " .. streak, 10, 30, 12)
+                end
             end
         end
     }
@@ -929,8 +1104,13 @@
             memorama4 = {}
             local paresSeleccionados4 = seleccionarPares(numbers, 5)
             for _, par in ipairs(paresSeleccionados4) do
-                table.insert(memorama4, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
-                table.insert(memorama4, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                if lang_flag then
+                    table.insert(memorama4, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama4, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                else
+                    table.insert(memorama4, {text = par.english, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama4, {text = par.mapudungun, match = par.english, flipped = true, matched = false})
+                end
             end
             shuffle(memorama4)      
             matchesFound = 0
@@ -986,11 +1166,188 @@
                 music(-1) 
                 musicStarted = false
                 siguienteNivel(4)
-                print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                print("Puntaje total: " .. totalScore, 20, 120, 12)
-                print("Intentos: " .. attempts, 10, 20, 12)
-                print("Racha: " .. streak, 10, 30, 12)
-                print("Gracias por jugar", 20, 130, 12)
+
+                if not lang_flag then 
+                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
+                else
+                    print("You Win! You found all the pairs", 20, 110, 12)
+                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("Attempts: " .. attempts, 10, 20, 12)
+                    print("Streak: " .. streak, 10, 30, 12)
+                end
+            end
+        end
+    }
+
+    niveles["nivel5"] = {
+        inicializar = function()
+            changeColors(5)
+            memorama5 = {}
+            local paresSeleccionados5 = seleccionarPares(body, 5)
+            for _, par in ipairs(paresSeleccionados5) do
+                if lang_flag then
+                    table.insert(memorama5, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama5, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                else
+                    table.insert(memorama5, {text = par.english, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama5, {text = par.mapudungun, match = par.english, flipped = true, matched = false})
+                end
+            end
+            shuffle(memorama5)
+            matchesFound = 0
+            firstCard, secondCard = nil, nil
+
+            score = 0
+            streak = 0
+            attempts = 0
+            revealTimer = 120  -- 2 segundos de revelación
+        end,
+        actualizar = function()
+            if not musicStarted then
+                music(0)  -- Reproduce la música en el track 0
+                musicStarted = true
+            end
+    
+            if revealTimer > 0 then
+                revealTimer = revealTimer - 1
+                if revealTimer == 0 then
+                    for _, carta in ipairs(memorama5) do
+                        carta.flipped = false  -- Oculta las cartas después del período de revelación
+                    end
+                end
+            else
+                mx, my, left, middle, right = mouse()
+                angle = math.atan2(my - py, mx - px)
+                manejarClick(memorama5)  -- Permite al jugador interactuar
+                verificarPares()
+            end
+        end,
+        dibujar = function()
+            cls(0)
+            map(0, 0, 30, 17)  -- Dibujar el mapa
+            volverMenu()
+            revisarGlosario()
+            actualizarParpadeo()
+            dibujarOjos(px, py, angle)
+            dibujarMemorama(memorama5)
+    
+            -- Mostrar puntaje acumulado 
+            print(totalScore, 115, 90, 12)
+            print(attempts, 115, 98, 12)
+
+            if streak > 1 then
+                print(streak, 115, 113, 12)
+            end
+    
+            -- Mostrar mensaje si el jugador ha encontrado todos los pares
+            if matchesFound == 5 then
+                cls(0)
+                music(-1)
+                musicStarted = false
+                volverMenu()
+                siguienteNivel(5)
+
+                if not lang_flag then 
+                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
+                else
+                    print("You Win! You found all the pairs", 20, 110, 12)
+                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("Attempts: " .. attempts, 10, 20, 12)
+                    print("Streak: " .. streak, 10, 30, 12)
+                end
+
+            end
+        end
+    }
+
+    niveles["nivel6"] = {
+        inicializar = function()
+            changeColors(6)
+            memorama6 = {}
+            local paresSeleccionados6 = seleccionarPares(words, 5)
+            for _, par in ipairs(paresSeleccionados6) do
+                if lang_flag then
+                    table.insert(memorama6, {text = par.spanish, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama6, {text = par.mapudungun, match = par.spanish, flipped = true, matched = false})
+                else
+                    table.insert(memorama6, {text = par.english, match = par.mapudungun, flipped = true, matched = false})
+                    table.insert(memorama6, {text = par.mapudungun, match = par.english, flipped = true, matched = false})
+                end
+            end
+            shuffle(memorama6)
+            matchesFound = 0
+            firstCard, secondCard = nil, nil
+
+            score = 0
+            streak = 0
+            attempts = 0
+            revealTimer = 120  -- 2 segundos de revelación
+        end,
+        actualizar = function()
+            if not musicStarted then
+                music(0)  -- Reproduce la música en el track 0
+                musicStarted = true
+            end
+    
+            if revealTimer > 0 then
+                revealTimer = revealTimer - 1
+                if revealTimer == 0 then
+                    for _, carta in ipairs(memorama6) do
+                        carta.flipped = false  -- Oculta las cartas después del período de revelación
+                    end
+                end
+            else
+                mx, my, left, middle, right = mouse()
+                angle = math.atan2(my - py, mx - px)
+                manejarClick(memorama6)  -- Permite al jugador interactuar
+                verificarPares()
+            end
+        end,
+        dibujar = function()
+            cls(0)
+            map(0, 0, 30, 17)  -- Dibujar el mapa
+            volverMenu()
+            revisarGlosario()
+            actualizarParpadeo()
+            dibujarOjos(px, py, angle)
+            dibujarMemorama(memorama6)
+    
+            -- Mostrar puntaje acumulado 
+            print(totalScore, 115, 90, 12)
+            print(attempts, 115, 98, 12)
+
+            if streak > 1 then
+                print(streak, 115, 113, 12)
+            end
+    
+            -- Mostrar mensaje si el jugador ha encontrado todos los pares
+            if matchesFound == 5 then
+                cls(0)
+                music(-1)
+                musicStarted = false
+                volverMenu()
+                siguienteNivel(6)
+
+                if not lang_flag then 
+                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
+                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
+                    print("Gracias por jugar", 10, 50, 12)
+                else
+                    print("You Win! You found all the pairs", 20, 110, 12)
+                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("Attempts: " .. attempts, 10, 20, 12)
+                    print("Streak: " .. streak, 10, 30, 12)
+                    print("Thanks 4 play: " .. streak, 10, 50, 12)
+                end
+
             end
         end
     }
@@ -1010,7 +1367,14 @@
             map(0, 85, 30, 100)  -- Dibujar el mapa, si lo necesitas
     
             -- Mostrar el mensaje "Hola Mundo"
-            print("Castellano", 30, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+            
+            if not lang_flag then
+                print("English", 30, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+            else
+                print("Castellano", 30, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+            end
+
+
             print("Mapuzungun", 130, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
 
             volverNivel()  -- Llama la función para dibujar el botón de "volver al nivel"
@@ -1051,11 +1415,9 @@
         dibujar = function()
             cls(0)  -- Limpia la pantalla con color de fondo 0
             map(0, 102, 30, 118)  -- Dibujar el mapa, si lo necesitas
-    
-            -- Mostrar el mensaje "Hola Mundo"
-            print("Lenguaje?", 60, 60, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+            seleccionarES()
+            seleccionarEN()
             
-            volverMenu()  -- Llama la función para dibujar el botón de "volver al menú"
         end
     }
     
@@ -1107,7 +1469,6 @@
             end
         end,
         dibujar = function()
-            
             dibujarMenu(opcion_seleccionada)
         end
     }
