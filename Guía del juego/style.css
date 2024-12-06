@@ -1,0 +1,368 @@
+/*Esta parte es para resetar el css*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*----------------------------ACA VA LO MIO------------------------------------------------*/
+
+@font-face {
+    font-family: "tic";
+    src: url('tic-80-wide-font.ttf') format('truetype');
+  }
+  
+
+:root {
+    --distancia: 60px;
+    --fondo: #AE3E53;
+    --articulo:#ffffd1;
+    --footer: #272727;
+
+  }
+
+nav{
+    margin-top:2vwvw;
+    position: absolute;
+    left: 50%;
+    top: 65vw;
+    transform: translateX(-50%);
+    width: 80vw;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav a{
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(226, 226, 226);
+    font-size: 2vw;
+}
+
+nav a:hover{
+    color: #ffffff;
+    text-shadow: 2px 2px 2px rgb(112, 112, 112);
+}
+
+  body {
+    
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;  
+}
+
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:var(--articulo);
+    background-image: url(img/fondo_camino.svg);
+    background-size: contain;
+}
+
+.logo img{
+    width: 70vw;
+    margin-bottom: 2vw;
+    
+    
+}
+
+.nientiendo {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--fondo);
+    background-image: url(img/fondo_camino.svg);
+    background-size: contain;
+    height: 60vw;
+    margin-bottom: 2vw;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 10vw;
+    
+}
+
+.nientiendo img{
+    height: auto;
+    width: 40vw;
+    padding-bottom: 20vw;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges; /* para navegadores antiguos */
+
+}
+
+
+
+
+section {
+    background-color: var(--articulo);
+    background-image: url(img/fondo_camino.svg);
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+h1 {
+    padding: 10px;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 8vw;
+    color: #333d57;
+    display: contents;
+    font-family: "tic", sans-serif;
+}
+
+h1::before{
+    display: inline-block;
+    content: "";
+    width: 100vw;
+    height: 2px;
+    background-color: #474747;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    margin-top: 20px;
+}
+
+
+i{
+    font-size: 2vw;
+}
+
+footer{
+    background: var(--fondo);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+footer p{
+    color:white;
+    text-shadow: 1px 1px 1px rgb(8, 8, 8);
+}
+
+h2, h3{
+    font-family: "tic", sans-serif;
+    color:white;
+    text-shadow: 1px 1px 1px rgb(8, 8, 8);
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
+footer a{
+    margin-bottom: 3vw;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(234, 234, 234);
+    padding: 3px;
+    width: 50vw;
+    height: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2vw;
+    color:black;
+    
+}
+
+footer a:hover{
+    color:rgb(255, 255, 255);
+    background-color: rgb(155, 155, 155);
+    transition: 0.3s;
+    box-shadow: 2px 3px 3px rgba(107, 102, 102, 0.399);
+}
+
+.grid-item{
+    background: linear-gradient(90deg, rgb(255, 170, 50) 0%, rgb(255, 144, 144) 35%, rgb(252, 57, 57) 100%);
+    border-radius: 10px;
+    box-shadow: 3px 5px 5px 5px #27272739;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 20vw;
+    width: 35vw;
+    padding: 1vw;
+}
+
+.b{
+    background: linear-gradient(90deg, rgb(50, 255, 50) 0%, rgb(153, 44, 255) 35%, rgb(255, 180, 42) 100%);   
+}
+.c{
+    background: linear-gradient(90deg, rgb(255, 119, 142) 0%, rgb(9, 247, 247) 35%, rgb(195, 255, 190) 100%);   
+}
+.d{
+    background: linear-gradient(90deg, rgb(255, 90, 40) 0%, rgb(97, 69, 255) 35%, rgb(255, 110, 110) 100%);
+}
+
+span{
+    font-family: "tic", sans-serif;
+    font-weight: bold;
+    font-size: 3vw;
+    color: rgb(167, 230, 255);
+    text-shadow: 1px 1px 1px rgb(8, 8, 8);
+    padding-top: 3vw
+}
+
+
+p{
+    /* Egecto de que la hoja está impresa */
+    text-shadow: 1px 1px 1px rgb(255, 255, 255);
+    font-size: 3vw;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.one {
+    grid-column: 1;
+    grid-row: 1;
+}
+.two {
+    grid-column: 2;
+    grid-row: 1/2;
+}
+.three {
+    grid-column: 1;
+    grid-row: 2;
+}
+.four {
+    grid-column: 2;
+    grid-row: 2;
+}
+.five {
+    grid-column: 1;
+    grid-row: 3;
+}
+.six {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+iframe{
+    width: 100%;
+    border-radius: 10px;
+}
+
+strong{
+    color:#ffd30f;
+    font-size: 4.5vw;
+    font-weight: 900;
+    text-shadow: 1px 1px 1px rgb(8, 8, 8);
+    
+}
+
+b{
+    color:#ffd30f;
+    font-weight: 900;
+    text-shadow: 1px 1px 1px rgb(8, 8, 8);
+}
+#historia{
+    background-color: #ffb4dd;
+}
+
+#personajes{
+    background-color: #ffe281;
+}
+
+#personajes p, #review p, #contexto p, #historia p{
+    margin-top: 4px;
+    color:white;
+    text-shadow: 2px 2px 2px black;
+}
+#tips{
+    background-color: #d7dfff;
+}
+
+#review{
+    background-color: #afffbc;
+}
+
+@media screen and (min-width: 800px) {
+   h1{
+    font-size: 5vw;
+   }
+   i{
+    font-size: 1vw;
+   }
+   p{
+    font-size: 1.3vw;
+   }
+
+   span{
+    font-size: 3vw;
+   }
+
+   nav a{
+    font-size: 2.1vw;
+   }
+
+}
+
