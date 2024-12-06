@@ -1407,6 +1407,7 @@
             -- Puedes agregar aquí cualquier inicialización necesaria para el glosario
         end,
         actualizar = function()
+            
             if not musicStarted then
                 music(0)  -- Reproduce la música en el track 0
                 musicStarted = true
@@ -1417,6 +1418,8 @@
             map(0, 102, 30, 118)  -- Dibujar el mapa, si lo necesitas
             seleccionarES()
             seleccionarEN()
+            mx, my, left, middle, right = mouse()
+            print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
             
         end
     }
