@@ -25,8 +25,6 @@ UgaBuGames
 Nosotros aspiramos a ser líderes en la creación de experiencias de juego que integren y promuevan la riqueza cultural y lingüística de los idiomas nativos americanos, utilizándolos como una herramienta educativa en plataformas accesibles y modernas. Queremos ofrecer una experiencia que no solo entretenga, sino que también permita a los jugadores conectar y aprender de estas lenguas y culturas de manera significativa.
 #### 2.2.2 Misión
 Nuestro compromiso es desarrollar un prototipo de videojuego tipo memorice que refleje nuestra calidad artística y capacidad de gestión en el ámbito del desarrollo de videojuegos para Web, Android e iOS. Utilizando la tecnología de TIC-80, crearemos un juego en el que los jugadores puedan emparejar palabras en español o inglés con sus sinónimos en un idioma nativo americano, promoviendo tanto el aprendizaje como la preservación cultural. A través de esta propuesta, buscamos captar el interés de inversionistas y asegurar el financiamiento necesario para futuros proyectos aún más ambiciosos.
-### 2.3 Logotipo
-![Placeholder](https://static.wikia.nocookie.net/sonic-x9874/images/6/6f/Sonic_135.png/revision/latest/thumbnail/width/360/height/360?cb=20160226182328)
 
 ## 3. Palabras seleccionadas
 
