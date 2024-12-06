@@ -10,7 +10,8 @@
         [3] = 95,
         [4] = 79,
         [5] = 78, 
-        [6] = 94  
+        [6] = 94,
+        [7] = 63
     }
     
     lang_flag = false
@@ -24,6 +25,83 @@
     px, py = 110, 26
     angle = math.atan2(my - py, mx - px)
 
+    -- Diccionario de traducciones para las categorías
+    local categoriasTraducidas = {
+        months = {spanish = "Meses", english = "Months"},
+        dias_semana = {spanish = "Dias de la Semana", english = "Days of the Week"},
+        colors = {spanish = "Colores", english = "Colors"},
+        numbers = {spanish = "Numeros", english = "Numbers"},
+        body = {spanish = "Partes del Cuerpo", english = "Body Parts"},
+        words = {spanish = "Palabras", english = "Words"}
+    }
+
+    -- Función para traducir los títulos de las categorías
+    function obtenerTituloCategoria(categoria)
+        return not lang_flag and categoriasTraducidas[categoria].english or categoriasTraducidas[categoria].spanish
+    end
+
+    glosarioScroll = {
+        categorias = {"months", "dias_semana", "colors", "numbers", "body", "words"},
+        indiceCategoria = 1, -- Categoría seleccionada actualmente
+        offset = 0,          -- Desplazamiento vertical en la lista
+        maxPorPagina = 8     -- Número máximo de elementos visibles por página
+    }
+
+    function mostrarGlosario()
+        local categoriaActual = glosarioScroll.categorias[glosarioScroll.indiceCategoria]
+
+        local lista = _G[categoriaActual] -- Accede a la tabla de palabras correspondiente
+    
+        -- Validar si la lista existe y es válida
+        if not lista or type(lista) ~= "table" then
+            print("Categoría inválida: " .. tostring(categoriaActual), 10, 10, 8)
+            return
+        end
+    
+        local y = 30 -- Coordenada Y inicial para dibujar
+    
+        -- Traducir y mostrar el título de la categoría
+        local tituloCategoria = obtenerTituloCategoria(categoriaActual)
+        print(string.upper(tituloCategoria), 24, 10, 12) -- Centrado en la parte superior
+
+    
+        -- Mostrar las palabras dentro del rango del desplazamiento
+        for i = glosarioScroll.offset + 1, math.min(#lista, glosarioScroll.offset + glosarioScroll.maxPorPagina) do
+            local palabra = lista[i]
+    
+            -- Validar si la palabra existe
+            if palabra and type(palabra) == "table" then
+                -- Selecciona el idioma dependiendo de la bandera
+                local izquierda = not lang_flag and palabra.english or palabra.spanish -- Inglés o Español
+                local derecha = palabra.mapudungun -- Siempre Mapudungun
+    
+                -- Dibuja las palabras en la posición correspondiente
+                print(izquierda, 25, y, 7) -- Columna izquierda
+                print(derecha, 140, y, 7) -- Columna derecha (ajusta 190 según el ancho de la pantalla)
+                y = y + 10 -- Incrementa Y para la siguiente palabra
+            else
+            end
+        end
+    
+        -- Indicadores de navegación
+        if glosarioScroll.offset > 0 then
+            if not lang_flag then
+                print("^ Scroll Up", 30, 115, 6)
+            else   
+                print("^ Subir", 80, 115, 6)
+            end
+        end
+        if glosarioScroll.offset + glosarioScroll.maxPorPagina < #lista then
+            if not lang_flag then
+                print("v Scroll Down", 140, 115, 6)
+            else
+                print("v Bajar", 175, 115, 6)
+            end
+        end
+    end
+    
+    
+    
 
     -- Funcion para cambiar de nivel
     function cambiarNivel(nuevoNivel)
@@ -42,7 +120,7 @@
         inicial_y = 60 
         
         if not lang_flag then
-            print("Select a level, friend", inicial_x, inicial_y, 12)
+            print("Select a level...", inicial_x, inicial_y, 12)
         else
             print("Selecciona un nivel", inicial_x, inicial_y, 12)
         end
@@ -66,7 +144,7 @@
         -- Dibujar botón de iniciar
         rectb(inicial_x - 10, inicial_y + 48, 120, 20, 14)
         if not lang_flag then
-            print("START :)", inicial_x - 7, inicial_y + 50, 12, false, 3)
+            print(" START", inicial_x - 7, inicial_y + 50, 12, false, 3)
         else
             print("INICIAR", inicial_x - 7, inicial_y + 50, 12, false, 3)
         end
@@ -78,11 +156,11 @@
             if (x >= 92 and x <= 100) and (y >= 78 and y <= 94) then
                 opcion_seleccionada = opcion_seleccionada - 1
                 if opcion_seleccionada == 0 then
-                    opcion_seleccionada = 6
+                    opcion_seleccionada = 7
                 end
             elseif (x >= 150 and x <= 158) and (y >= 78 and y <= 94) then
                 opcion_seleccionada = opcion_seleccionada + 1
-                if opcion_seleccionada == 7 then
+                if opcion_seleccionada == 8 then
                     opcion_seleccionada = 1
                 end
             end
@@ -95,7 +173,7 @@
         if (x > 65 and x < 184) and (y > 108 and y < 127) then
             rect(inicial_x-10,inicial_y+48,120,20,14+t%60//10)
             if not lang_flag then
-                print("START :)", inicial_x-7, inicial_y+50,12, false, 3)
+                print(" START", inicial_x-7, inicial_y+50,12, false, 3)
             else
                 print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
             end 
@@ -112,16 +190,18 @@
                     cambiarNivel("nivel5")
                 elseif opcion_seleccionada == 6 then
                     cambiarNivel("nivel6")
+                elseif opcion_seleccionada == 7 then
+                    cambiarNivel("glosario")
                 elseif opcion_seleccionada == 0 then
                     cambiarNivel("intro")
-                elseif opcion_seleccionada == 7 then
+                elseif opcion_seleccionada == 8 then
                     cambiarNivel("creditos")
                 end
             end
         else
             rect(inicial_x-10,inicial_y+48,120,20,14)
             if not lang_flag then
-                print("START :)", inicial_x-7, inicial_y+50,12, false, 3)
+                print(" START", inicial_x-7, inicial_y+50,12, false, 3)
             else
                 print("INICIAR", inicial_x-7, inicial_y+50,12, false, 3)
             end
@@ -270,7 +350,7 @@
         mx, my, left, middle, right = mouse()
         if (mx>=225 and mx < 235) and (my>=5 and my <=14) then
             if left then
-                cambiarNivel("nivel1") --FALTA IMPLEMENTAR
+                cambiarNivel("menu") --FALTA IMPLEMENTAR
             end
         end
         
@@ -342,8 +422,6 @@
                 cambiarNivel("intro")
             end
         end
-        
-        rect(222, 60, 16, 16, 0)
     end
 
     function seleccionarEN()
@@ -355,7 +433,7 @@
             spr(45, 176,88,0)
             spr(45, 184,88,0)
             spr(61, 192,88,0)
-            --Uga Buga
+            --Mapuzungun
             spr(177, 176,72)
             spr(177, 184,72)
             spr(177, 192,72)
@@ -380,7 +458,7 @@
         mx, my, left, middle, right = mouse()
         if (mx>=130 and mx < 210) and (my>=67 and my <=104) then
             rect(130, 67, 80, 30, 14+t%60//10)
-            --Uga Buga
+            --Mapuzungun
             spr(77, 168,72,0)
             spr(93, 168,80,0)
             spr(109, 168,88,0)
@@ -413,24 +491,6 @@
                 cambiarNivel("intro")
             end
         end
-        
-        rect(222, 80, 16, 16, 0)
-    end
-
-   
-
-    function revisarGlosario()
-        
-        mx, my, left, middle, right = mouse()
-        if (mx>=5 and mx < 15) and (my>=5 and my <=14) then
-            if left then
-                cambiarNivel("glosario")
-            end
-        end
-        
-        rect(5,5,10,10,14+t%60//10)      
-
-        spr(63, 6, 6)  
     end
 
     function siguienteNivel(nivelActual)
@@ -1007,7 +1067,6 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
-            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             dibujarMemorama(memorama)
@@ -1092,7 +1151,6 @@
             cls()
             map(0, 0, 30, 17) 
             volverMenu()
-            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             dibujarMemorama(memorama2)
@@ -1175,7 +1233,6 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
-            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -1258,7 +1315,6 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
-            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             -- Otros elementos del juego
@@ -1341,7 +1397,6 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
-            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             dibujarMemorama(memorama5)
@@ -1425,7 +1480,6 @@
             cls(0)
             map(0, 0, 30, 17)  -- Dibujar el mapa
             volverMenu()
-            revisarGlosario()
             actualizarParpadeo()
             dibujarOjos(px, py, angle)
             dibujarMemorama(memorama6)
@@ -1473,6 +1527,33 @@
                 music(0)  -- Reproduce la música en el track 0
                 musicStarted = true
             end
+
+            -- Teclas para cambiar entre categorías
+            if btnp(2) then -- Flecha izquierda
+                glosarioScroll.indiceCategoria = glosarioScroll.indiceCategoria - 1
+                if glosarioScroll.indiceCategoria < 1 then
+                    glosarioScroll.indiceCategoria = #glosarioScroll.categorias
+                end
+                glosarioScroll.offset = 0 -- Reinicia el desplazamiento
+            end
+            if btnp(3) then -- Flecha derecha
+                glosarioScroll.indiceCategoria = glosarioScroll.indiceCategoria + 1
+                if glosarioScroll.indiceCategoria > #glosarioScroll.categorias then
+                    glosarioScroll.indiceCategoria = 1
+                end
+                glosarioScroll.offset = 0 -- Reinicia el desplazamiento
+            end
+
+            -- Teclas para desplazamiento vertical
+            local categoriaActual = glosarioScroll.categorias[glosarioScroll.indiceCategoria]
+            local lista = _G[categoriaActual] -- Accede a la tabla actual
+
+            if btnp(0) then -- Flecha arriba
+                glosarioScroll.offset = math.max(0, glosarioScroll.offset - 1)
+            end
+            if btnp(1) then -- Flecha abajo
+                glosarioScroll.offset = math.min(#lista - glosarioScroll.maxPorPagina, glosarioScroll.offset + 1)
+            end
         end,
         dibujar = function()
             cls(0)  -- Limpia la pantalla con color de fondo 0
@@ -1481,14 +1562,13 @@
             -- Mostrar el mensaje "Hola Mundo"
             
             if not lang_flag then
-                print("English", 30, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+                print("English", 25, 20, 0)  
             else
-                print("Castellano", 30, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
+                print("Castellano", 25, 20, 0)  
             end
 
-
-            print("Mapuzungun", 130, 40, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
-
+            print("Mapuzungun", 140, 20, 0)  
+            mostrarGlosario() -- Muestra el contenido del glosario
             volverNivel()  -- Llama la función para dibujar el botón de "volver al nivel"
         end
     }
