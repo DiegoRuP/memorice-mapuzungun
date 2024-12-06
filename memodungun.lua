@@ -495,19 +495,20 @@
 
     function siguienteNivel(nivelActual)
 
-        if not musicStarted then
-            music(3)  -- Reproduce la música en el track 0
-            musicStarted = true
-        end
-
+        map(0, 34, 30, 47)
 
         mx, my, left, middle, right = mouse()
         --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
-        rect(115,66,27,35,3+t%60//20)    
-        spr(381, 120, 70, 0, 2, 1)
-        spr(381, 120, 82, 0, 2, 3)  
-        print("Siguiente Nivel", 40, 50,12, false, 2)
-        if (mx>=115 and mx < 141) and (my>=66 and my <=101) then
+        rect(107,66,27,35,3+t%60//20)    
+        spr(381, 112, 70, 0, 2, 1)
+        spr(381, 112, 82, 0, 2, 3)  
+        
+        if not lang_flag then
+            print("Next Level", 40, 44,12, false, 2)
+        else
+            print("Siguiente Nivel", 40, 44,12, false, 2)
+        end
+        if (mx>=107 and mx < 132) and (my>=66 and my <=101) then
             if left then
                 if nivelActual == 1 then
                     cambiarNivel("nivel2")
@@ -1082,21 +1083,20 @@
             -- Mostrar mensaje si el jugador ha encontrado todos los pares
             if matchesFound == 5 then
                 cls(0)
-                music(-1)
-                musicStarted = false
+                music(3)
                 volverMenu()
                 siguienteNivel(1)
 
                 if not lang_flag then 
-                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
-                    print("Intentos: " .. attempts, 10, 20, 12)
-                    print("Racha: " .. streak, 10, 30, 12)
-                else
-                    print("You Win! You found all the pairs", 20, 110, 12)
-                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("You Win! You found all the pairs", 20, 120, 12)
+                    print("\nFinal score: " .. totalScore, 10, 5, 12)
                     print("Attempts: " .. attempts, 10, 20, 12)
                     print("Streak: " .. streak, 10, 30, 12)
+                else                    
+                    print("Ganaste! Encontraste todos los pares.", 20, 120, 12)
+                    print("\nPuntaje final: " .. totalScore, 10, 5, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
                 end
 
             end
@@ -1165,20 +1165,19 @@
     
             if matchesFound == 5 then
                 cls()
-                music(-1) 
-                musicStarted = false
+                music(3) 
                 siguienteNivel(2)
 
                 if not lang_flag then 
-                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
-                    print("Intentos: " .. attempts, 10, 20, 12)
-                    print("Racha: " .. streak, 10, 30, 12)
-                else
-                    print("You Win! You found all the pairs", 20, 110, 12)
-                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("You Win! You found all the pairs", 20, 120, 12)
+                    print("\nFinal score: " .. totalScore, 10, 5, 12)
                     print("Attempts: " .. attempts, 10, 20, 12)
                     print("Streak: " .. streak, 10, 30, 12)
+                else                    
+                    print("Ganaste! Encontraste todos los pares.", 20, 120, 12)
+                    print("\nPuntaje final: " .. totalScore, 10, 5, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
                 end
             end
         end
@@ -1253,15 +1252,15 @@
                 siguienteNivel(3)
 
                 if not lang_flag then 
-                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
-                    print("Intentos: " .. attempts, 10, 20, 12)
-                    print("Racha: " .. streak, 10, 30, 12)
-                else
-                    print("You Win! You found all the pairs", 20, 110, 12)
-                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("You Win! You found all the pairs", 20, 120, 12)
+                    print("\nFinal score: " .. totalScore, 10, 5, 12)
                     print("Attempts: " .. attempts, 10, 20, 12)
                     print("Streak: " .. streak, 10, 30, 12)
+                else                    
+                    print("Ganaste! Encontraste todos los pares.", 20, 120, 12)
+                    print("\nPuntaje final: " .. totalScore, 10, 5, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
                 end
             end
         end
@@ -1336,15 +1335,15 @@
                 siguienteNivel(4)
 
                 if not lang_flag then 
-                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
-                    print("Intentos: " .. attempts, 10, 20, 12)
-                    print("Racha: " .. streak, 10, 30, 12)
-                else
-                    print("You Win! You found all the pairs", 20, 110, 12)
-                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("You Win! You found all the pairs", 20, 120, 12)
+                    print("\nFinal score: " .. totalScore, 10, 5, 12)
                     print("Attempts: " .. attempts, 10, 20, 12)
                     print("Streak: " .. streak, 10, 30, 12)
+                else                    
+                    print("Ganaste! Encontraste todos los pares.", 20, 120, 12)
+                    print("\nPuntaje final: " .. totalScore, 10, 5, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
                 end
             end
         end
@@ -1418,15 +1417,15 @@
                 siguienteNivel(5)
 
                 if not lang_flag then 
-                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
-                    print("Intentos: " .. attempts, 10, 20, 12)
-                    print("Racha: " .. streak, 10, 30, 12)
-                else
-                    print("You Win! You found all the pairs", 20, 110, 12)
-                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("You Win! You found all the pairs", 20, 120, 12)
+                    print("\nFinal score: " .. totalScore, 10, 5, 12)
                     print("Attempts: " .. attempts, 10, 20, 12)
                     print("Streak: " .. streak, 10, 30, 12)
+                else                    
+                    print("Ganaste! Encontraste todos los pares.", 20, 120, 12)
+                    print("\nPuntaje final: " .. totalScore, 10, 5, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
                 end
 
             end
@@ -1501,17 +1500,15 @@
                 siguienteNivel(6)
 
                 if not lang_flag then 
-                    print("¡Ganaste! Encontraste todos los pares.", 20, 110, 12)
-                    print("\nPuntaje final: " .. totalScore, 20, 120, 12)
-                    print("Intentos: " .. attempts, 10, 20, 12)
-                    print("Racha: " .. streak, 10, 30, 12)
-                    print("Gracias por jugar", 10, 50, 12)
-                else
-                    print("You Win! You found all the pairs", 20, 110, 12)
-                    print("\nFinal score: " .. totalScore, 20, 120, 12)
+                    print("You Win! You found all the pairs", 20, 120, 12)
+                    print("\nFinal score: " .. totalScore, 10, 5, 12)
                     print("Attempts: " .. attempts, 10, 20, 12)
                     print("Streak: " .. streak, 10, 30, 12)
-                    print("Thanks 4 play: " .. streak, 10, 50, 12)
+                else                    
+                    print("Ganaste! Encontraste todos los pares.", 20, 120, 12)
+                    print("\nPuntaje final: " .. totalScore, 10, 5, 12)
+                    print("Intentos: " .. attempts, 10, 20, 12)
+                    print("Racha: " .. streak, 10, 30, 12)
                 end
 
             end
@@ -1579,40 +1576,43 @@
         end,
         actualizar = function()
             if not musicStarted then
-                music(0)  -- Reproduce la música en el track 0
+                music(3)  -- Reproduce la música en el track 3
                 musicStarted = true
             end
         end,
         dibujar = function()
-            cls(0)  -- Limpia la pantalla con color de fondo 0
-            map(0, 68, 30, 84)  -- Dibujar el mapa, si lo necesitas
+            cls(0)  
+            map(0, 68, 30, 84)  
     
-            -- Mostrar el mensaje "Hola Mundo"
-            print("Hola mi gente", 60, 60, 7)  -- Dibuja el texto en la pantalla en (60, 60) con color 7 (blanco)
-            
-            volverMenu()  -- Llama la función para dibujar el botón de "volver al menú"
+            print("Creditos", 90, 20, 7) 
+            print("Devs: Diego Ruan y Boris Herrera", 30, 50, 7)
+            print("Art: Diego Ruan", 30, 60, 7)
+            print("Music: Boris Herrera", 30, 70, 7)
+            print("Gracias por jugar!", 75, 90, 7)
+
+            print("UgabuGames 2024", 80, 100, 7)
+
+            volverMenu()  
         end
     }
 
     niveles["lenguaje"] = {
         inicializar = function()
-            -- Puedes agregar aquí cualquier inicialización necesaria para el glosario
         end,
         actualizar = function()
             
             if not musicStarted then
-                music(0)  -- Reproduce la música en el track 0
+                music(0)  
                 musicStarted = true
             end
         end,
         dibujar = function()
-            cls(0)  -- Limpia la pantalla con color de fondo 0
-            map(0, 102, 30, 118)  -- Dibujar el mapa, si lo necesitas
+            cls(0)  
+            map(0, 102, 30, 118)  
           
             seleccionarES()
             seleccionarEN()
             mx, my, left, middle, right = mouse()
-            --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
             
         end
     }
