@@ -9,8 +9,6 @@ Version : 1.0
 == ¿Quíen es UgaBuGames?
 UgaBuGames es un grupo de estudiantes de la Universidad de Viña del Mar, que se dedica a la creación de videojuegos educativos y de entretenimiento, con el objetivo de fomentar el aprendizaje y la difusión de la cultura chilena. 
 
-image::imagenes/ugabuicon.png[UgaBuGames]
-
 == ¿Que es Ñamku?
 La definicion de ñamku es "Espíritu ido" suelen referirse así al Aguilucho, es un ave rapaz que se encuentra en la región de la Araucanía, Chile.
 
@@ -29,13 +27,6 @@ Incluye:
 - **Casos de Uso**: Ejemplos detallados de cómo los usuarios interactúan con el juego.
 - **Decisiones Arquitectónicas (ADR)**: Documentación de decisiones clave en el desarrollo del proyecto.
 
-[Enlace al PRD](prd/prd.adoc)
-[Enlace a ADR](prd/adr.adoc)
-[Enlace a requisitos](prd/requisitos.adoc)
-[Enlace a diseño](prd/diseño.adoc)
-[Enlace a personas](prd/personas.adoc)
-[Enlace a casos de uso y storyboard](prd/casos.adoc)
-
 === Pruebas de Aceptación del Usuario (UAT)
 El plan de pruebas UAT asegura que el juego cumple con las expectativas del usuario. 
 Incluye:
@@ -44,12 +35,8 @@ Incluye:
 - **Casos de Prueba**: Escenarios específicos que deben validarse.
 - **Resultados de las pruebas**: Retroalimentación y métricas de éxito.
 
-[Enlace al Plan de Pruebas](uat/plan_usuarios.adoc)
-
 === Recursos
 Incluye referencias como información, traducciones, imágenes y colores utilizados en el juego.
-
-[Enlace a los Recursos](recursos/colores.adoc)
 
 == Créditos
 

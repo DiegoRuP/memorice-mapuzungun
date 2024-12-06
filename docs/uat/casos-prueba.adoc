@@ -22,7 +22,16 @@ Este documento contiene los casos de prueba que los usuarios ejecutarán para va
 - *Resultado esperado*: El nivel seleccionado carga correctamente.
 - *Resultado real*: [Espacio para retroalimentación].
 
-== Caso de Prueba 3: Usabilidad en dispositivos móviles
+== Caso de Prueba 3: Uso de glosario
+- *Objetivo*: Comprobar que proporcione correctamente la informacion.
+- *Precondiciones*: El usuario está en la pantalla de selección de nivel.
+- *Pasos*:
+  1. Seleccionar el glosario.
+  2. Confirmar la selección.
+- *Resultado esperado*: El nivel seleccionado carga correctamente y se puede navegar.
+- *Resultado real*: [Espacio para retroalimentación].
+
+== Caso de Prueba 4: Usabilidad en dispositivos móviles
 - *Objetivo*: Validar la funcionalidad del juego en pantallas táctiles.
 - *Precondiciones*: El juego está abierto en un dispositivo móvil.
 - *Pasos*:
