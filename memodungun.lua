@@ -280,10 +280,64 @@
     end
 
     function seleccionarES()
-        
+        rect(40, 67, 80, 30, 14)
+        --Uga Buga
+        spr(77, 80,72,0)
+        spr(93, 80,80,0)
+        spr(109, 80,88,0)
+        spr(45, 88,88,0)
+        spr(45, 94,88,0)
+        spr(61, 102,88,0)
+        spr(177, 88,72)
+        spr(177, 94,72)
+        spr(177, 102,72)
+        spr(193, 88,80)
+        spr(193, 94,80)
+        spr(193, 102,80)
+        --Spain
+        spr(77, 40,72,0)
+        spr(93, 40,80,0)
+        spr(109, 40,88,0)
+        spr(45, 48,88,0)
+        spr(45, 56,88,0)
+        spr(61, 63,88,0)
+        spr(176, 48,72)
+        spr(176, 56,72)
+        spr(176, 62,72)
+        spr(192, 48,80)
+        spr(192, 56,80)
+        spr(192, 62,80)
         mx, my, left, middle, right = mouse()
-        if (mx>=225 and mx < 235) and (my>=60 and my <=68) then
+        if (mx>=40 and mx < 120) and (my>=67 and my <=97) then
+            rect(40, 67, 80, 30, 14+t%60//10)
+                --Uga Buga
+            spr(77, 80,72,0)
+            spr(93, 80,80,0)
+            spr(109, 80,88,0)
+            spr(45, 88,88,0)
+            spr(45, 94,88,0)
+            spr(61, 102,88,0)
+            spr(177, 88,72)
+            spr(177, 94,72)
+            spr(177, 102,72)
+            spr(193, 88,80)
+            spr(193, 94,80)
+            spr(193, 102,80)
+            --Spain
+            spr(77, 40,72,0)
+            spr(93, 40,80,0)
+            spr(109, 40,88,0)
+            spr(45, 48,88,0)
+            spr(45, 56,88,0)
+            spr(61, 63,88,0)
+            spr(176, 48,72)
+            spr(176, 56,72)
+            spr(176, 62,72)
+            spr(192, 48,80)
+            spr(192, 56,80)
+            spr(192, 62,80)
             if left then
+                
                 lang_flag = true
                 cambiarNivel("intro")
             end
@@ -293,9 +347,67 @@
     end
 
     function seleccionarEN()
-        
+            rect(130, 67, 80, 30, 14)
+            
+            spr(77, 168,72,0)
+            spr(93, 168,80,0)
+            spr(109, 168,88,0)
+            spr(45, 176,88,0)
+            spr(45, 184,88,0)
+            spr(61, 192,88,0)
+            --Uga Buga
+            spr(177, 176,72)
+            spr(177, 184,72)
+            spr(177, 192,72)
+            spr(193, 176,80)
+            spr(193, 184,80)
+            spr(193, 192,80)
+
+            
+            spr(77, 128,72,0)
+            spr(93, 128,80,0)
+            spr(109, 128,88,0)
+            spr(45, 136,88,0)
+            spr(45, 144,88,0)
+            spr(61, 152,88,0)
+            --Gringo
+            spr(178, 136,72)
+            spr(194, 144,72)
+            spr(194, 152,72)
+            spr(194, 136,80)
+            spr(194, 144,80)
+            spr(194, 152,80)
         mx, my, left, middle, right = mouse()
-        if (mx>=225 and mx < 235) and (my>=80 and my <=84) then
+        if (mx>=130 and mx < 210) and (my>=67 and my <=104) then
+            rect(130, 67, 80, 30, 14+t%60//10)
+            --Uga Buga
+            spr(77, 168,72,0)
+            spr(93, 168,80,0)
+            spr(109, 168,88,0)
+            spr(45, 176,88,0)
+            spr(45, 184,88,0)
+            spr(61, 192,88,0)
+            spr(177, 176,72)
+            spr(177, 184,72)
+            spr(177, 192,72)
+            spr(193, 176,80)
+            spr(193, 184,80)
+            spr(193, 192,80)
+
+            
+            spr(77, 128,72,0)
+            spr(93, 128,80,0)
+            spr(109, 128,88,0)
+            spr(45, 136,88,0)
+            spr(45, 144,88,0)
+            spr(61, 152,88,0)
+            --Gringo
+            spr(178, 136,72)
+            spr(194, 144,72)
+            spr(194, 152,72)
+            spr(194, 136,80)
+            spr(194, 144,80)
+            spr(194, 152,80)
             if left then
                 lang_flag = false
                 cambiarNivel("intro")
@@ -1416,10 +1528,11 @@
         dibujar = function()
             cls(0)  -- Limpia la pantalla con color de fondo 0
             map(0, 102, 30, 118)  -- Dibujar el mapa, si lo necesitas
+          
             seleccionarES()
             seleccionarEN()
             mx, my, left, middle, right = mouse()
-            print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
+            --print("Posicion del mouse: ("..mx..", "..my..")", 10, 10, 12+t%60//20)
             
         end
     }
